@@ -1,0 +1,215 @@
+{
+  "engine": "edge",
+  "investigate": false,
+  "scaling": [
+    {
+      "browserDefault": 16,
+      "medium": 16,
+      "baseline": 17,
+      "percentage": 100,
+      "measured": 17,
+      "ratio": 1
+    },
+    {
+      "browserDefault": 16,
+      "medium": 16,
+      "baseline": 17,
+      "percentage": 85,
+      "measured": 14.45,
+      "ratio": 0.85
+    },
+    {
+      "browserDefault": 16,
+      "medium": 16,
+      "baseline": 17,
+      "percentage": 125,
+      "measured": 21.25,
+      "ratio": 1.25
+    },
+    {
+      "browserDefault": 16,
+      "medium": 16,
+      "baseline": 17,
+      "percentage": 150,
+      "measured": 25.5,
+      "ratio": 1.5
+    },
+    {
+      "browserDefault": 16,
+      "medium": 16,
+      "baseline": 17,
+      "percentage": 100,
+      "measured": 17,
+      "ratio": 1
+    },
+    {
+      "browserDefault": 20,
+      "medium": 20,
+      "baseline": 17,
+      "percentage": 100,
+      "measured": 17,
+      "ratio": 1
+    },
+    {
+      "browserDefault": 20,
+      "medium": 20,
+      "baseline": 17,
+      "percentage": 85,
+      "measured": 14.45,
+      "ratio": 0.85
+    },
+    {
+      "browserDefault": 20,
+      "medium": 20,
+      "baseline": 17,
+      "percentage": 125,
+      "measured": 21.25,
+      "ratio": 1.25
+    },
+    {
+      "browserDefault": 20,
+      "medium": 20,
+      "baseline": 17,
+      "percentage": 150,
+      "measured": 25.5,
+      "ratio": 1.5
+    },
+    {
+      "browserDefault": 20,
+      "medium": 20,
+      "baseline": 17,
+      "percentage": 100,
+      "measured": 17,
+      "ratio": 1
+    },
+    {
+      "browserDefault": 24,
+      "medium": 24,
+      "baseline": 17,
+      "percentage": 100,
+      "measured": 17,
+      "ratio": 1
+    },
+    {
+      "browserDefault": 24,
+      "medium": 24,
+      "baseline": 17,
+      "percentage": 85,
+      "measured": 14.45,
+      "ratio": 0.85
+    },
+    {
+      "browserDefault": 24,
+      "medium": 24,
+      "baseline": 17,
+      "percentage": 125,
+      "measured": 21.25,
+      "ratio": 1.25
+    },
+    {
+      "browserDefault": 24,
+      "medium": 24,
+      "baseline": 17,
+      "percentage": 150,
+      "measured": 25.5,
+      "ratio": 1.5
+    },
+    {
+      "browserDefault": 24,
+      "medium": 24,
+      "baseline": 17,
+      "percentage": 100,
+      "measured": 17,
+      "ratio": 1
+    }
+  ],
+  "loading": [
+    {
+      "scenario": "saved-dark",
+      "delayMs": 800,
+      "early": {
+        "theme": "dark",
+        "background": "rgb(33, 37, 41)",
+        "panelHidden": true,
+        "paints": [
+          {
+            "name": "first-paint",
+            "time": 116
+          },
+          {
+            "name": "first-contentful-paint",
+            "time": 116
+          }
+        ]
+      },
+      "finalTheme": "dark"
+    },
+    {
+      "scenario": "system-dark",
+      "delayMs": 800,
+      "early": {
+        "theme": "dark",
+        "background": "rgb(33, 37, 41)",
+        "panelHidden": true,
+        "paints": [
+          {
+            "name": "first-paint",
+            "time": 104
+          },
+          {
+            "name": "first-contentful-paint",
+            "time": 104
+          }
+        ]
+      },
+      "finalTheme": "dark"
+    },
+    {
+      "scenario": "saved-light",
+      "delayMs": 800,
+      "early": {
+        "theme": "light",
+        "background": "rgb(255, 255, 255)",
+        "panelHidden": true,
+        "paints": [
+          {
+            "name": "first-paint",
+            "time": 80
+          },
+          {
+            "name": "first-contentful-paint",
+            "time": 80
+          }
+        ]
+      },
+      "finalTheme": "light"
+    }
+  ],
+  "version": "155.0.4283.62",
+  "mobileTouch": [
+    {
+      "width": 375,
+      "baseline": 17,
+      "percentages": [
+        85,
+        125,
+        150
+      ],
+      "overflow": false,
+      "reload": "passed",
+      "disclosureTap": "passed"
+    },
+    {
+      "width": 390,
+      "baseline": 17,
+      "percentages": [
+        85,
+        125,
+        150
+      ],
+      "overflow": false,
+      "reload": "passed",
+      "disclosureTap": "passed"
+    }
+  ]
+}

@@ -2,42 +2,82 @@
 <details id="reading-preferences" hidden>
   <summary>Reading Preferences</summary>
   <div class="reading-controls">
-    <div class="reading-control">
+    <div class="reading-control reading-size-control">
       <label for="reading-size">Font size: <output id="reading-size-value" for="reading-size">100%</output></label>
-      <input id="reading-size" name="size" type="range" min="85" max="150" step="5" value="100" aria-valuetext="100 percent">
+      <div class="reading-size-row">
+        <span aria-hidden="true">A−</span>
+        <input id="reading-size" name="size" type="range" min="85" max="150" step="5" value="100" aria-valuetext="100 percent">
+        <span aria-hidden="true">A+</span>
+      </div>
     </div>
-    <div class="reading-control">
-      <label for="reading-font">Typeface</label>
-      <select id="reading-font" name="font">
-        <option value="sans">Sans-serif (Quarto default)</option>
-        <option value="serif">Serif</option>
-        <option value="atkinson">Atkinson Hyperlegible</option>
-      </select>
-    </div>
-    <div class="reading-control">
-      <label for="reading-appearance">Appearance</label>
-      <select id="reading-appearance" name="appearance">
-        <option value="system">Follow device preference</option>
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-      </select>
-    </div>
-    <div class="reading-control">
-      <label for="reading-spacing">Line spacing</label>
-      <select id="reading-spacing" name="spacing">
-        <option value="compact">Compact</option>
-        <option value="normal" selected>Normal (Quarto default)</option>
-        <option value="spacious">Spacious</option>
-      </select>
-    </div>
-    <div class="reading-control">
-      <label for="reading-width">Reading width</label>
-      <select id="reading-width" name="width" aria-describedby="reading-width-help">
-        <option value="narrow">Narrow</option>
-        <option value="standard" selected>Standard (Quarto default)</option>
-        <option value="wide">Wide</option>
-      </select>
-    </div>
+    <fieldset class="reading-control">
+      <legend>Typeface</legend>
+      <div class="reading-options">
+        <label class="reading-option">
+          <input id="reading-font-sans" type="radio" name="font" value="sans" checked>
+          <span class="reading-option-face"><span class="reading-preview reading-sample-sans" aria-hidden="true">Tt</span><span>Sans</span></span>
+        </label>
+        <label class="reading-option">
+          <input id="reading-font-serif" type="radio" name="font" value="serif">
+          <span class="reading-option-face"><span class="reading-preview reading-sample-serif" aria-hidden="true">Tt</span><span>Serif</span></span>
+        </label>
+        <label class="reading-option">
+          <input id="reading-font-atkinson" type="radio" name="font" value="atkinson">
+          <span class="reading-option-face"><span class="reading-preview reading-sample-atkinson" aria-hidden="true">Tt</span><span>Atkinson</span></span>
+        </label>
+      </div>
+    </fieldset>
+    <fieldset class="reading-control">
+      <legend>Appearance</legend>
+      <div class="reading-options">
+        <label class="reading-option">
+          <input id="reading-appearance-system" type="radio" name="appearance" value="system" checked>
+          <span class="reading-option-face"><svg class="reading-preview" viewBox="0 0 64 40" aria-hidden="true" focusable="false"><rect x="14" y="5" width="36" height="24" rx="2"/><path d="M32 29v7M23 36h18"/></svg><span>System</span></span>
+        </label>
+        <label class="reading-option">
+          <input id="reading-appearance-light" type="radio" name="appearance" value="light">
+          <span class="reading-option-face"><svg class="reading-preview" viewBox="0 0 64 40" aria-hidden="true" focusable="false"><circle cx="32" cy="20" r="7"/><path d="M32 3v5M32 32v5M15 20h5M44 20h5M20 8l4 4M40 28l4 4M20 32l4-4M40 12l4-4"/></svg><span>Light</span></span>
+        </label>
+        <label class="reading-option">
+          <input id="reading-appearance-dark" type="radio" name="appearance" value="dark">
+          <span class="reading-option-face"><svg class="reading-preview" viewBox="0 0 64 40" aria-hidden="true" focusable="false"><path d="M39 5a15 15 0 1 0 7 24A15 15 0 0 1 39 5Z"/></svg><span>Dark</span></span>
+        </label>
+      </div>
+    </fieldset>
+    <fieldset class="reading-control">
+      <legend>Line spacing</legend>
+      <div class="reading-options">
+        <label class="reading-option">
+          <input id="reading-spacing-compact" type="radio" name="spacing" value="compact">
+          <span class="reading-option-face"><svg class="reading-preview" viewBox="0 0 64 40" aria-hidden="true" focusable="false"><line x1="8" x2="56" y1="15" y2="15"/><line x1="8" x2="56" y1="20" y2="20"/><line x1="8" x2="56" y1="25" y2="25"/></svg><span>Compact</span></span>
+        </label>
+        <label class="reading-option">
+          <input id="reading-spacing-normal" type="radio" name="spacing" value="normal" checked>
+          <span class="reading-option-face"><svg class="reading-preview" viewBox="0 0 64 40" aria-hidden="true" focusable="false"><line x1="8" x2="56" y1="11" y2="11"/><line x1="8" x2="56" y1="20" y2="20"/><line x1="8" x2="56" y1="29" y2="29"/></svg><span>Normal</span></span>
+        </label>
+        <label class="reading-option">
+          <input id="reading-spacing-spacious" type="radio" name="spacing" value="spacious">
+          <span class="reading-option-face"><svg class="reading-preview" viewBox="0 0 64 40" aria-hidden="true" focusable="false"><line x1="8" x2="56" y1="5" y2="5"/><line x1="8" x2="56" y1="20" y2="20"/><line x1="8" x2="56" y1="35" y2="35"/></svg><span>Spacious</span></span>
+        </label>
+      </div>
+    </fieldset>
+    <fieldset class="reading-control" aria-describedby="reading-width-help">
+      <legend>Reading width</legend>
+      <div class="reading-options">
+        <label class="reading-option">
+          <input id="reading-width-narrow" type="radio" name="width" value="narrow">
+          <span class="reading-option-face"><svg class="reading-preview" viewBox="0 0 64 40" aria-hidden="true" focusable="false"><line x1="20" x2="44" y1="11" y2="11"/><line x1="20" x2="44" y1="20" y2="20"/><line x1="20" x2="44" y1="29" y2="29"/></svg><span>Narrow</span></span>
+        </label>
+        <label class="reading-option">
+          <input id="reading-width-standard" type="radio" name="width" value="standard" checked>
+          <span class="reading-option-face"><svg class="reading-preview" viewBox="0 0 64 40" aria-hidden="true" focusable="false"><line x1="12" x2="52" y1="11" y2="11"/><line x1="12" x2="52" y1="20" y2="20"/><line x1="12" x2="52" y1="29" y2="29"/></svg><span>Standard</span></span>
+        </label>
+        <label class="reading-option">
+          <input id="reading-width-wide" type="radio" name="width" value="wide">
+          <span class="reading-option-face"><svg class="reading-preview" viewBox="0 0 64 40" aria-hidden="true" focusable="false"><line x1="4" x2="60" y1="11" y2="11"/><line x1="4" x2="60" y1="20" y2="20"/><line x1="4" x2="60" y1="29" y2="29"/></svg><span>Wide</span></span>
+        </label>
+      </div>
+    </fieldset>
   </div>
   <p id="reading-width-help">Reading width applies on larger screens.</p>
   <button id="reading-reset" type="button">Reset to Defaults</button>

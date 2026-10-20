@@ -75,14 +75,69 @@ html[data-bs-theme="dark"] h2 {
 }
 .reading-controls {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
-  gap: 0.75rem 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: 1rem;
   margin-block: 0.75rem;
 }
-.reading-control { min-width: 0; }
-.reading-control label { display: block; margin-bottom: 0.25rem; }
-.reading-control select, .reading-control input { width: 100%; min-width: 0; }
-#reading-preferences select, #reading-preferences button {
+.reading-control { min-width: 0; border: 0; padding: 0; margin: 0; }
+.reading-control legend {
+  float: none;
+  width: auto;
+  font-size: inherit;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  padding: 0;
+}
+.reading-size-control { grid-column: 1 / -1; }
+.reading-size-row { display: flex; align-items: center; gap: 0.6rem; }
+.reading-size-row span { flex-shrink: 0; }
+#reading-size { width: 100%; min-width: 0; min-height: 2.5rem; accent-color: var(--bs-body-color); }
+.reading-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 4.5rem), 1fr));
+  gap: 0.4rem;
+}
+.reading-option { position: relative; min-width: 0; cursor: pointer; }
+.reading-option input {
+  position: absolute;
+  top: 0.4rem;
+  left: 0.4rem;
+  width: 0.85rem;
+  height: 0.85rem;
+  margin: 0;
+  accent-color: var(--bs-body-color);
+}
+.reading-option-face {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  height: 100%;
+  padding: 1.25rem 0.3rem 0.45rem;
+  border: 2px solid var(--bs-border-color);
+  border-radius: 0.2rem;
+  background: var(--bs-body-bg);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+.reading-option input:checked + .reading-option-face {
+  border-color: currentColor;
+  background: var(--bs-tertiary-bg);
+}
+/* WebKit can focus radios after arrow keys without matching :focus-visible. */
+.reading-option input:focus + .reading-option-face {
+  outline: 2px solid var(--bs-link-color);
+  outline-offset: 3px;
+}
+.reading-preview { width: 3.5rem; height: 2.5rem; flex-shrink: 0; }
+svg.reading-preview { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+span.reading-preview { display: grid; place-items: center; font-size: 2rem; line-height: 1; font-weight: 400; }
+.reading-sample-sans { font-family: var(--bs-font-sans-serif); }
+.reading-sample-serif { font-family: Georgia, "Times New Roman", serif; }
+/* Closed panels do not apply this optional font to their hidden preview. */
+#reading-preferences[open] .reading-sample-atkinson { font-family: "Atkinson Hyperlegible", var(--bs-font-sans-serif); }
+#reading-preferences button {
   font: inherit;
   color: var(--bs-body-color);
   background-color: var(--bs-body-bg);
@@ -91,8 +146,12 @@ html[data-bs-theme="dark"] h2 {
   padding: 0.35rem 0.5rem;
   min-height: 2.5rem;
 }
-#reading-preferences input { min-height: 2.5rem; accent-color: var(--bs-link-color); }
 #reading-preferences :focus-visible { outline: 2px solid var(--bs-link-color); outline-offset: 3px; }
 #reading-preferences p { margin-block: 0.5rem; }
 #reading-font-status:empty { display: none; }
+@media (forced-colors: active) {
+  .reading-option-face { border-color: ButtonBorder; }
+  .reading-option input:checked + .reading-option-face { border-color: Highlight; border-style: double; }
+  .reading-option input:focus + .reading-option-face { outline-color: Highlight; }
+}
 @media print { #reading-preferences { display: none; } }

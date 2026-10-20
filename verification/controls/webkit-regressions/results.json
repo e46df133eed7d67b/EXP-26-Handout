@@ -1,0 +1,86 @@
+{
+  "engine": "webkit",
+  "investigate": false,
+  "scaling": [],
+  "loading": [
+    {
+      "scenario": "saved-dark",
+      "delayMs": 800,
+      "early": {
+        "theme": "dark",
+        "background": "rgb(33, 37, 41)",
+        "panelHidden": true,
+        "paints": [
+          {
+            "name": "first-contentful-paint",
+            "time": 96
+          }
+        ],
+        "screenshotLimitation": "page.screenshot: Timeout 3000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n"
+      },
+      "finalTheme": "dark"
+    },
+    {
+      "scenario": "system-dark",
+      "delayMs": 800,
+      "early": {
+        "theme": "dark",
+        "background": "rgb(33, 37, 41)",
+        "panelHidden": true,
+        "paints": [
+          {
+            "name": "first-contentful-paint",
+            "time": 92
+          }
+        ],
+        "screenshotLimitation": "page.screenshot: Timeout 3000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n"
+      },
+      "finalTheme": "dark"
+    },
+    {
+      "scenario": "saved-light",
+      "delayMs": 800,
+      "early": {
+        "theme": "light",
+        "background": "rgb(255, 255, 255)",
+        "panelHidden": true,
+        "paints": [
+          {
+            "name": "first-contentful-paint",
+            "time": 101
+          }
+        ],
+        "screenshotLimitation": "page.screenshot: Timeout 3000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n"
+      },
+      "finalTheme": "light"
+    }
+  ],
+  "version": "26.5",
+  "defaultFontSettings": "Native browser-default override is tested via Chromium CDP only; not simulated with CSS in WebKit.",
+  "mobileTouch": [
+    {
+      "width": 375,
+      "baseline": 17,
+      "percentages": [
+        85,
+        125,
+        150
+      ],
+      "overflow": false,
+      "reload": "passed",
+      "disclosureTap": "passed"
+    },
+    {
+      "width": 390,
+      "baseline": 17,
+      "percentages": [
+        85,
+        125,
+        150
+      ],
+      "overflow": false,
+      "reload": "passed",
+      "disclosureTap": "passed"
+    }
+  ]
+}

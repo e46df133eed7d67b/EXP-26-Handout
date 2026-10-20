@@ -7,6 +7,7 @@ const engine = process.env.HANDOUT_BROWSER || 'edge';
 const reportDir = process.env.HANDOUT_REPORT_DIR ? path.resolve(process.env.HANDOUT_REPORT_DIR) : __dirname;
 fs.mkdirSync(reportDir, { recursive: true });
 let url = process.env.HANDOUT_URL;
+const choose = (page, name, value) => page.locator(`input[type="radio"][name="${name}"][value="${value}"]`).check();
 const key = 'exp-2026-10-26.reading.v1';
 const results = [];
 const record = (name, data = 'passed') => { results.push({ name, result: data }); console.log(name, JSON.stringify(data)); };
@@ -67,6 +68,10 @@ const content = page => page.evaluate(() => ({
     await page.locator('#reading-preferences summary').focus();
     await page.keyboard.press('Enter');
     assert.equal(await page.locator('#reading-preferences').getAttribute('open'), '');
+    await page.evaluate(() => document.fonts.load('1em "Atkinson Hyperlegible"'));
+    assert(requests.some(r => r.endsWith('AtkinsonHyperlegible-Regular.ttf')));
+    assert(await page.locator('.reading-sample-atkinson').evaluate(el => getComputedStyle(el).fontFamily.includes('Atkinson Hyperlegible')));
+    record('Atkinson preview loads on expansion; no font fetched while initially collapsed');
     await page.keyboard.press('Space');
     assert.equal(await page.locator('#reading-preferences').getAttribute('open'), null);
     await page.keyboard.press('Enter');
@@ -75,12 +80,12 @@ const content = page => page.evaluate(() => ({
     await page.keyboard.press('ArrowRight');
     assert.equal(await page.locator('#reading-size').inputValue(), '105');
     await page.keyboard.press('Tab');
-    assert.equal(await page.evaluate(() => document.activeElement.id), 'reading-font');
+    assert.equal(await page.evaluate(() => document.activeElement.id), 'reading-font-sans');
     record('Keyboard expansion, slider, and focus order');
-    await page.selectOption('#reading-font', 'serif');
-    await page.selectOption('#reading-spacing', 'spacious');
-    await page.selectOption('#reading-width', 'narrow');
-    await page.selectOption('#reading-appearance', 'dark');
+    await choose(page, 'font', 'serif');
+    await choose(page, 'spacing', 'spacious');
+    await choose(page, 'width', 'narrow');
+    await choose(page, 'appearance', 'dark');
     const personalized = await metrics(page);
     assert(personalized.font.includes('Georgia'));
     assert(parseFloat(personalized.line) / parseFloat(personalized.size) > 1.79);
@@ -90,16 +95,16 @@ const content = page => page.evaluate(() => ({
     assert.equal(await page.locator('#reading-preferences').getAttribute('open'), null);
     record('All preferences persist across refresh', personalized);
     await page.locator('summary').click();
-    await page.selectOption('#reading-font', 'atkinson');
+    await choose(page, 'font', 'atkinson');
     await page.evaluate(() => document.fonts.ready);
     assert(await page.evaluate(() => document.fonts.check('17px "Atkinson Hyperlegible"')));
     assert(requests.some(r => r.endsWith('AtkinsonHyperlegible-Regular.ttf')));
-    record('Atkinson loads locally only when selected', requests.filter(r => /\.ttf/.test(r)));
+    record('Atkinson body and preview use the local font', requests.filter(r => /\.ttf/.test(r)));
     await page.locator('#reading-reset').click();
     assert.equal(await page.evaluate(k => localStorage.getItem(k), key), null);
     assert.deepEqual(await metrics(page), baseline);
     for (const [spacing, ratio] of [['compact', 1.35], ['normal', 1.5], ['spacious', 1.8]]) {
-      await page.selectOption('#reading-spacing', spacing);
+      await choose(page, 'spacing', spacing);
       const m = await metrics(page);
       assert(Math.abs(parseFloat(m.line) / parseFloat(m.size) - ratio) < 0.01);
     }
@@ -108,7 +113,7 @@ const content = page => page.evaluate(() => ({
     await page.emulateMedia({ colorScheme: 'dark' });
     await page.waitForFunction(() => document.documentElement.dataset.bsTheme === 'dark');
     assert.equal(await page.locator('html').getAttribute('data-bs-theme'), 'dark');
-    await page.selectOption('#reading-appearance', 'light');
+    await choose(page, 'appearance', 'light');
     await page.emulateMedia({ colorScheme: 'light' });
     await page.emulateMedia({ colorScheme: 'dark' });
     assert.equal(await page.locator('html').getAttribute('data-bs-theme'), 'light');
@@ -124,11 +129,19 @@ const content = page => page.evaluate(() => ({
         await page.locator('#reading-size').fill(String(size));
         await page.locator('#reading-size').dispatchEvent('change');
         for (const measure of ['narrow', 'standard', 'wide']) {
-          await page.selectOption('#reading-width', measure);
+          await choose(page, 'width', measure);
           const m = await metrics(page);
           layouts.push({ width, size, measure, main: m.width, scroll: m.scrollWidth });
           widths[measure] = m.width;
           assert(m.scrollWidth <= width + 1, `Overflow: ${JSON.stringify(layouts.at(-1))}`);
+          const clipped = await page.locator('.reading-option-face').evaluateAll(options => options.some(el => el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 1));
+          assert.equal(clipped, false, 'Option labels/previews must not clip');
+          const overlap = await page.locator('.reading-option').evaluateAll(options => options.some(option => {
+            const radio = option.querySelector('input').getBoundingClientRect();
+            const preview = option.querySelector('.reading-preview').getBoundingClientRect();
+            return radio.bottom > preview.top + 0.5;
+          }));
+          assert.equal(overlap, false, 'Native radio dots must stay above the preview area');
         }
         if (width >= 768) {
           assert(widths.narrow < widths.standard, `Narrow must reduce width: ${JSON.stringify(widths)}`);
@@ -156,7 +169,7 @@ const content = page => page.evaluate(() => ({
     }
     await page.addScriptTag({ path: path.join(process.env.LOCALAPPDATA, 'Programs/Quarto/share/formats/html/axe/axe.min.js') });
     for (const mode of ['light', 'dark']) {
-      await page.selectOption('#reading-appearance', mode);
+      await choose(page, 'appearance', mode);
       const audit = await page.evaluate(() => axe.run('#reading-preferences', { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa'] } }));
       fs.writeFileSync(path.join(reportDir, `accessibility-${mode}.json`), JSON.stringify(audit, null, 2));
       assert.deepEqual(audit.violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => n.target) })), []);
@@ -166,6 +179,59 @@ const content = page => page.evaluate(() => ({
     assert.equal(requests.filter(r => !r.startsWith(url)).length, 0);
     assert.deepEqual(errors, []);
     record('No external page requests or JavaScript errors');
+
+    // The old preference schema must restore both styles and native selections.
+    const legacy = { size: 125, font: 'serif', appearance: 'dark', spacing: 'spacious', width: 'wide' };
+    await page.evaluate(({ key, legacy }) => localStorage.setItem(key, JSON.stringify(legacy)), { key, legacy });
+    await page.reload();
+    assert.equal(await page.locator('#reading-size').inputValue(), '125');
+    for (const name of ['font', 'appearance', 'spacing', 'width']) {
+      assert.equal(await page.locator(`input[name="${name}"]:checked`).inputValue(), legacy[name]);
+    }
+    await page.locator('summary').click();
+    for (const [name, values] of Object.entries({ font: ['sans', 'serif', 'atkinson'], appearance: ['system', 'light', 'dark'], spacing: ['compact', 'normal', 'spacious'], width: ['narrow', 'standard', 'wide'] })) {
+      for (const value of values) {
+        await choose(page, name, value);
+        await page.reload();
+        assert.equal(await page.locator(`input[name="${name}"]:checked`).inputValue(), value);
+        assert.equal(await page.evaluate(({ key, name }) => JSON.parse(localStorage.getItem(key))[name], { key, name }), value);
+        await page.locator('summary').click();
+      }
+    }
+    await page.locator('#reading-reset').click();
+    for (const [name, value] of Object.entries({ font: 'sans', appearance: 'system', spacing: 'normal', width: 'standard' })) {
+      assert.equal(await page.locator(`input[name="${name}"]:checked`).inputValue(), value);
+      const current = page.locator(`input[name="${name}"]:checked`);
+      await current.focus();
+      await page.keyboard.press('ArrowRight');
+      assert.notEqual(await page.locator(`input[name="${name}"]:checked`).inputValue(), value);
+      await page.keyboard.press('ArrowLeft');
+      assert.equal(await page.locator(`input[name="${name}"]:checked`).inputValue(), value);
+      assert.notEqual(await current.locator('..').locator('.reading-option-face').evaluate(el => getComputedStyle(el).outlineStyle), 'none', JSON.stringify(await page.evaluate(() => ({ active: document.activeElement.id, focused: [...document.querySelectorAll('input[type="radio"]:focus')].map(el => ({ id: el.id, visible: el.matches(':focus-visible') })) }))));
+    }
+    record('Legacy saved choices, every radio option persists, visual reset, and native arrow navigation');
+
+    for (const mode of ['light', 'dark']) {
+      await choose(page, 'appearance', mode);
+      await page.setViewportSize({ width: 1440, height: 1100 });
+      await page.locator('#reading-preferences').screenshot({ path: path.join(reportDir, `panel-${mode}-desktop.png`) });
+      for (const width of [320, 375, 390]) {
+        await page.setViewportSize({ width, height: 1000 });
+        await page.locator('#reading-size').fill('150');
+        await page.locator('#reading-size').dispatchEvent('change');
+        await page.locator('#reading-preferences').screenshot({ path: path.join(reportDir, `panel-${mode}-${width}-150.png`) });
+      }
+      await page.locator('#reading-size').fill('100');
+      await page.locator('#reading-size').dispatchEvent('change');
+    }
+    const diagrams = await page.locator('input[name="spacing"], input[name="width"]').evaluateAll(inputs => inputs.map(input => ({
+      group: input.name, value: input.value,
+      lines: [...input.nextElementSibling.querySelectorAll('line')].map(line => ['x1', 'x2', 'y1', 'y2'].map(a => Number(line.getAttribute(a))))
+    })));
+    assert(diagrams.every(d => d.lines.length === 3));
+    assert(diagrams.filter(d => d.group === 'spacing').every(d => d.lines.every(([x1, x2]) => x1 === 8 && x2 === 56)));
+    assert(diagrams.filter(d => d.group === 'width').every(d => d.lines.map(l => l[2]).join(',') === '11,20,29'));
+    record('Each spacing/width diagram has exactly three lines with the requested invariant geometry', diagrams);
 
     // Disabled scripts leave a normal, fully readable Quarto handout.
     const noJS = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
@@ -194,8 +260,8 @@ const content = page => page.evaluate(() => ({
       await test.goto(url);
       await test.waitForLoadState('networkidle');
       await test.locator('summary').click();
-      await test.selectOption('#reading-appearance', 'dark');
-      await test.selectOption('#reading-font', 'serif');
+      await choose(test, 'appearance', 'dark');
+      await choose(test, 'font', 'serif');
       assert.equal(await test.locator('html').getAttribute('data-bs-theme'), 'dark');
       assert((await metrics(test)).font.includes('Georgia'));
       if (failures.length) assert(inherited.length > 0, 'Errors must also occur in original Quarto page');
@@ -209,6 +275,11 @@ const content = page => page.evaluate(() => ({
     await page.keyboard.press('Tab');
     assert.notEqual(await page.locator('#reading-size').evaluate(e => getComputedStyle(e).outlineStyle), 'none');
     record('Forced colors retains keyboard focus outline');
+    await page.locator('input[name="font"]:checked').focus();
+    await page.keyboard.press('ArrowRight');
+    assert.equal(await page.locator('input[name="font"]:checked + .reading-option-face').evaluate(el => getComputedStyle(el).borderStyle), 'double');
+    await page.locator('#reading-preferences').screenshot({ path: path.join(reportDir, 'panel-forced-colors.png') });
+    record('Radio selected state and focus in forced colors');
     fs.writeFileSync(path.join(reportDir, 'browser-results.json'), JSON.stringify(results, null, 2));
   } finally { await browser.close(); server.close(); }
 })().catch(e => { console.error(e); process.exitCode = 1; });

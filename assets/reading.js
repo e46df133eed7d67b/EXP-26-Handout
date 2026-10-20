@@ -42,7 +42,8 @@
   } catch {
     storageAvailable = false;
   }
-  const controls = Object.fromEntries(Object.keys(defaults).map(name => [name, panel.querySelector(`[name="${name}"]`)]));
+  const sizeControl = document.getElementById("reading-size");
+  const radioControls = panel.querySelectorAll('input[type="radio"]');
   const storageStatus = document.getElementById("reading-storage");
   const fontStatus = document.getElementById("reading-font-status");
   let fontCheck;
@@ -70,15 +71,20 @@
       else root.setAttribute(attribute, preferences[name]);
     }
     appearance();
-    for (const name of Object.keys(controls)) controls[name].value = preferences[name];
+    sizeControl.value = preferences.size;
+    for (const radio of radioControls) radio.checked = radio.value === preferences[radio.name];
     document.getElementById("reading-size-value").value = `${preferences.size}%`;
-    controls.size.setAttribute("aria-valuetext", `${preferences.size} percent`);
+    sizeControl.setAttribute("aria-valuetext", `${preferences.size} percent`);
     fontStatus.textContent = "";
-    if (preferences.font === "atkinson" && document.fonts) {
-      // @font-face is lazy. No font request occurs before this choice is used.
+    checkFont();
+  }
+
+  function checkFont() {
+    if ((preferences.font === "atkinson" || panel.open) && document.fonts) {
+      // Load the real preview on expansion, or the body font on saved selection.
       fontCheck ||= document.fonts.load('1em "Atkinson Hyperlegible"');
       fontCheck.catch(() => {
-        if (preferences.font === "atkinson") {
+        if (preferences.font === "atkinson" || panel.open) {
           fontStatus.textContent = "Atkinson Hyperlegible could not load. Using sans-serif instead.";
         }
         fontCheck = undefined; // A later selection may retry.
@@ -104,6 +110,7 @@
   apply();
   storageMessage();
   panel.hidden = false;
+  panel.addEventListener("toggle", () => { if (panel.open) checkFont(); });
 
   panel.addEventListener("input", event => {
     const control = event.target;

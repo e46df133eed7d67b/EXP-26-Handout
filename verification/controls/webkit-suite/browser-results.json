@@ -1,0 +1,719 @@
+[
+  {
+    "name": "Browser",
+    "result": {
+      "engine": "webkit",
+      "version": "26.5"
+    }
+  },
+  {
+    "name": "Original text, links, TOC, default typography and width preserved",
+    "result": {
+      "font": "system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Noto Sans, Liberation Sans, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji",
+      "size": "17px",
+      "line": "25.5px",
+      "color": "rgb(33, 37, 41)",
+      "background": "rgb(255, 255, 255)",
+      "width": 799,
+      "scrollWidth": 1440,
+      "viewport": 1440
+    }
+  },
+  {
+    "name": "Atkinson preview loads on expansion; no font fetched while initially collapsed",
+    "result": "passed"
+  },
+  {
+    "name": "Keyboard expansion, slider, and focus order",
+    "result": "passed"
+  },
+  {
+    "name": "All preferences persist across refresh",
+    "result": {
+      "font": "Georgia, Times New Roman, serif",
+      "size": "17.85px",
+      "line": "32.130001px",
+      "color": "rgb(222, 226, 230)",
+      "background": "rgb(33, 37, 41)",
+      "width": 637.140625,
+      "scrollWidth": 1440,
+      "viewport": 1440
+    }
+  },
+  {
+    "name": "Atkinson body and preview use the local font",
+    "result": [
+      "http://127.0.0.1:60307/assets/fonts/AtkinsonHyperlegible-Regular.ttf",
+      "http://127.0.0.1:60307/assets/fonts/AtkinsonHyperlegible-Regular.ttf",
+      "http://127.0.0.1:60307/assets/fonts/AtkinsonHyperlegible-Italic.ttf",
+      "http://127.0.0.1:60307/assets/fonts/AtkinsonHyperlegible-Bold.ttf"
+    ]
+  },
+  {
+    "name": "All line-spacing choices",
+    "result": "passed"
+  },
+  {
+    "name": "Reset, live system appearance, and explicit override",
+    "result": "passed"
+  },
+  {
+    "name": "Responsive matrix (63 combinations)",
+    "result": [
+      {
+        "width": 320,
+        "size": 85,
+        "measure": "narrow",
+        "main": 276.65625,
+        "scroll": 320
+      },
+      {
+        "width": 320,
+        "size": 85,
+        "measure": "standard",
+        "main": 276.65625,
+        "scroll": 320
+      },
+      {
+        "width": 320,
+        "size": 85,
+        "measure": "wide",
+        "main": 276.65625,
+        "scroll": 320
+      },
+      {
+        "width": 320,
+        "size": 100,
+        "measure": "narrow",
+        "main": 269,
+        "scroll": 320
+      },
+      {
+        "width": 320,
+        "size": 100,
+        "measure": "standard",
+        "main": 269,
+        "scroll": 320
+      },
+      {
+        "width": 320,
+        "size": 100,
+        "measure": "wide",
+        "main": 269,
+        "scroll": 320
+      },
+      {
+        "width": 320,
+        "size": 150,
+        "measure": "narrow",
+        "main": 243.5,
+        "scroll": 320
+      },
+      {
+        "width": 320,
+        "size": 150,
+        "measure": "standard",
+        "main": 243.5,
+        "scroll": 320
+      },
+      {
+        "width": 320,
+        "size": 150,
+        "measure": "wide",
+        "main": 243.5,
+        "scroll": 320
+      },
+      {
+        "width": 375,
+        "size": 85,
+        "measure": "narrow",
+        "main": 331.65625,
+        "scroll": 375
+      },
+      {
+        "width": 375,
+        "size": 85,
+        "measure": "standard",
+        "main": 331.65625,
+        "scroll": 375
+      },
+      {
+        "width": 375,
+        "size": 85,
+        "measure": "wide",
+        "main": 331.65625,
+        "scroll": 375
+      },
+      {
+        "width": 375,
+        "size": 100,
+        "measure": "narrow",
+        "main": 324,
+        "scroll": 375
+      },
+      {
+        "width": 375,
+        "size": 100,
+        "measure": "standard",
+        "main": 324,
+        "scroll": 375
+      },
+      {
+        "width": 375,
+        "size": 100,
+        "measure": "wide",
+        "main": 324,
+        "scroll": 375
+      },
+      {
+        "width": 375,
+        "size": 150,
+        "measure": "narrow",
+        "main": 298.5,
+        "scroll": 375
+      },
+      {
+        "width": 375,
+        "size": 150,
+        "measure": "standard",
+        "main": 298.5,
+        "scroll": 375
+      },
+      {
+        "width": 375,
+        "size": 150,
+        "measure": "wide",
+        "main": 298.5,
+        "scroll": 375
+      },
+      {
+        "width": 390,
+        "size": 85,
+        "measure": "narrow",
+        "main": 346.65625,
+        "scroll": 390
+      },
+      {
+        "width": 390,
+        "size": 85,
+        "measure": "standard",
+        "main": 346.65625,
+        "scroll": 390
+      },
+      {
+        "width": 390,
+        "size": 85,
+        "measure": "wide",
+        "main": 346.65625,
+        "scroll": 390
+      },
+      {
+        "width": 390,
+        "size": 100,
+        "measure": "narrow",
+        "main": 339,
+        "scroll": 390
+      },
+      {
+        "width": 390,
+        "size": 100,
+        "measure": "standard",
+        "main": 339,
+        "scroll": 390
+      },
+      {
+        "width": 390,
+        "size": 100,
+        "measure": "wide",
+        "main": 339,
+        "scroll": 390
+      },
+      {
+        "width": 390,
+        "size": 150,
+        "measure": "narrow",
+        "main": 313.5,
+        "scroll": 390
+      },
+      {
+        "width": 390,
+        "size": 150,
+        "measure": "standard",
+        "main": 313.5,
+        "scroll": 390
+      },
+      {
+        "width": 390,
+        "size": 150,
+        "measure": "wide",
+        "main": 313.5,
+        "scroll": 390
+      },
+      {
+        "width": 768,
+        "size": 85,
+        "measure": "narrow",
+        "main": 414.515625,
+        "scroll": 768
+      },
+      {
+        "width": 768,
+        "size": 85,
+        "measure": "standard",
+        "main": 518.15625,
+        "scroll": 768
+      },
+      {
+        "width": 768,
+        "size": 85,
+        "measure": "wide",
+        "main": 539.828125,
+        "scroll": 768
+      },
+      {
+        "width": 768,
+        "size": 100,
+        "measure": "narrow",
+        "main": 408.390625,
+        "scroll": 768
+      },
+      {
+        "width": 768,
+        "size": 100,
+        "measure": "standard",
+        "main": 510.5,
+        "scroll": 768
+      },
+      {
+        "width": 768,
+        "size": 100,
+        "measure": "wide",
+        "main": 536,
+        "scroll": 768
+      },
+      {
+        "width": 768,
+        "size": 150,
+        "measure": "narrow",
+        "main": 400,
+        "scroll": 768
+      },
+      {
+        "width": 768,
+        "size": 150,
+        "measure": "standard",
+        "main": 500,
+        "scroll": 768
+      },
+      {
+        "width": 768,
+        "size": 150,
+        "measure": "wide",
+        "main": 538.25,
+        "scroll": 768
+      },
+      {
+        "width": 820,
+        "size": 85,
+        "measure": "narrow",
+        "main": 435.3125,
+        "scroll": 820
+      },
+      {
+        "width": 820,
+        "size": 85,
+        "measure": "standard",
+        "main": 544.15625,
+        "scroll": 820
+      },
+      {
+        "width": 820,
+        "size": 85,
+        "measure": "wide",
+        "main": 565.828125,
+        "scroll": 820
+      },
+      {
+        "width": 820,
+        "size": 100,
+        "measure": "narrow",
+        "main": 429.1875,
+        "scroll": 820
+      },
+      {
+        "width": 820,
+        "size": 100,
+        "measure": "standard",
+        "main": 536.5,
+        "scroll": 820
+      },
+      {
+        "width": 820,
+        "size": 100,
+        "measure": "wide",
+        "main": 562,
+        "scroll": 820
+      },
+      {
+        "width": 820,
+        "size": 150,
+        "measure": "narrow",
+        "main": 408.796875,
+        "scroll": 820
+      },
+      {
+        "width": 820,
+        "size": 150,
+        "measure": "standard",
+        "main": 511,
+        "scroll": 820
+      },
+      {
+        "width": 820,
+        "size": 150,
+        "measure": "wide",
+        "main": 549.25,
+        "scroll": 820
+      },
+      {
+        "width": 1024,
+        "size": 85,
+        "measure": "narrow",
+        "main": 521.84375,
+        "scroll": 1024
+      },
+      {
+        "width": 1024,
+        "size": 85,
+        "measure": "standard",
+        "main": 652.3125,
+        "scroll": 1024
+      },
+      {
+        "width": 1024,
+        "size": 85,
+        "measure": "wide",
+        "main": 743.984375,
+        "scroll": 1024
+      },
+      {
+        "width": 1024,
+        "size": 100,
+        "measure": "narrow",
+        "main": 509.59375,
+        "scroll": 1024
+      },
+      {
+        "width": 1024,
+        "size": 100,
+        "measure": "standard",
+        "main": 637,
+        "scroll": 1024
+      },
+      {
+        "width": 1024,
+        "size": 100,
+        "measure": "wide",
+        "main": 732.5,
+        "scroll": 1024
+      },
+      {
+        "width": 1024,
+        "size": 150,
+        "measure": "narrow",
+        "main": 468.796875,
+        "scroll": 1024
+      },
+      {
+        "width": 1024,
+        "size": 150,
+        "measure": "standard",
+        "main": 586,
+        "scroll": 1024
+      },
+      {
+        "width": 1024,
+        "size": 150,
+        "measure": "wide",
+        "main": 694.25,
+        "scroll": 1024
+      },
+      {
+        "width": 1440,
+        "size": 85,
+        "measure": "narrow",
+        "main": 645.3125,
+        "scroll": 1440
+      },
+      {
+        "width": 1440,
+        "size": 85,
+        "measure": "standard",
+        "main": 806.640625,
+        "scroll": 1440
+      },
+      {
+        "width": 1440,
+        "size": 85,
+        "measure": "wide",
+        "main": 898.3125,
+        "scroll": 1440
+      },
+      {
+        "width": 1440,
+        "size": 100,
+        "measure": "narrow",
+        "main": 639.1875,
+        "scroll": 1440
+      },
+      {
+        "width": 1440,
+        "size": 100,
+        "measure": "standard",
+        "main": 799,
+        "scroll": 1440
+      },
+      {
+        "width": 1440,
+        "size": 100,
+        "measure": "wide",
+        "main": 894.5,
+        "scroll": 1440
+      },
+      {
+        "width": 1440,
+        "size": 150,
+        "measure": "narrow",
+        "main": 618.796875,
+        "scroll": 1440
+      },
+      {
+        "width": 1440,
+        "size": 150,
+        "measure": "standard",
+        "main": 773.5,
+        "scroll": 1440
+      },
+      {
+        "width": 1440,
+        "size": 150,
+        "measure": "wide",
+        "main": 881.75,
+        "scroll": 1440
+      }
+    ]
+  },
+  {
+    "name": "Accessibility tree",
+    "result": "- group:\n  - text: \"Reading Preferences Font size:\"\n  - status: 150%\n  - slider \"Font size:\": \"150\"\n  - group \"Typeface\":\n    - text: Typeface\n    - radio \"Sans\" [checked]\n    - text: Sans\n    - radio \"Serif\"\n    - text: Serif\n    - radio \"Atkinson\"\n    - text: Atkinson\n  - group \"Appearance\":\n    - text: Appearance\n    - radio \"System\" [checked]\n    - text: System\n    - radio \"Light\"\n    - text: Light\n    - radio \"Dark\"\n    - text: Dark\n  - group \"Line spacing\":\n    - text: Line spacing\n    - radio \"Compact\"\n    - text: Compact\n    - radio \"Normal\" [checked]\n    - text: Normal\n    - radio \"Spacious\"\n    - text: Spacious\n  - group \"Reading width\":\n    - text: Reading width\n    - radio \"Narrow\"\n    - text: Narrow\n    - radio \"Standard\"\n    - text: Standard\n    - radio \"Wide\" [checked]\n    - text: Wide\n  - paragraph: Reading width applies on larger screens.\n  - button \"Reset to Defaults\"\n  - status: Preferences are saved only in this browser."
+  },
+  {
+    "name": "Automated accessibility audit (light, expanded panel)",
+    "result": {
+      "violations": 0,
+      "passes": 17,
+      "manualReview": 0
+    }
+  },
+  {
+    "name": "Automated accessibility audit (dark, expanded panel)",
+    "result": {
+      "violations": 0,
+      "passes": 17,
+      "manualReview": 0
+    }
+  },
+  {
+    "name": "No external page requests or JavaScript errors",
+    "result": "passed"
+  },
+  {
+    "name": "Legacy saved choices, every radio option persists, visual reset, and native arrow navigation",
+    "result": "passed"
+  },
+  {
+    "name": "Each spacing/width diagram has exactly three lines with the requested invariant geometry",
+    "result": [
+      {
+        "group": "spacing",
+        "value": "compact",
+        "lines": [
+          [
+            8,
+            56,
+            15,
+            15
+          ],
+          [
+            8,
+            56,
+            20,
+            20
+          ],
+          [
+            8,
+            56,
+            25,
+            25
+          ]
+        ]
+      },
+      {
+        "group": "spacing",
+        "value": "normal",
+        "lines": [
+          [
+            8,
+            56,
+            11,
+            11
+          ],
+          [
+            8,
+            56,
+            20,
+            20
+          ],
+          [
+            8,
+            56,
+            29,
+            29
+          ]
+        ]
+      },
+      {
+        "group": "spacing",
+        "value": "spacious",
+        "lines": [
+          [
+            8,
+            56,
+            5,
+            5
+          ],
+          [
+            8,
+            56,
+            20,
+            20
+          ],
+          [
+            8,
+            56,
+            35,
+            35
+          ]
+        ]
+      },
+      {
+        "group": "width",
+        "value": "narrow",
+        "lines": [
+          [
+            20,
+            44,
+            11,
+            11
+          ],
+          [
+            20,
+            44,
+            20,
+            20
+          ],
+          [
+            20,
+            44,
+            29,
+            29
+          ]
+        ]
+      },
+      {
+        "group": "width",
+        "value": "standard",
+        "lines": [
+          [
+            12,
+            52,
+            11,
+            11
+          ],
+          [
+            12,
+            52,
+            20,
+            20
+          ],
+          [
+            12,
+            52,
+            29,
+            29
+          ]
+        ]
+      },
+      {
+        "group": "width",
+        "value": "wide",
+        "lines": [
+          [
+            4,
+            60,
+            11,
+            11
+          ],
+          [
+            4,
+            60,
+            20,
+            20
+          ],
+          [
+            4,
+            60,
+            29,
+            29
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "No JavaScript: full content, TOC and links preserved",
+    "result": "passed"
+  },
+  {
+    "name": "Storage denied: preferences still usable",
+    "result": {
+      "preferenceErrors": 0,
+      "originalQuartoErrors": 2,
+      "quartoErrorsAfterInteraction": 2
+    }
+  },
+  {
+    "name": "Storage quota: preferences still usable",
+    "result": {
+      "preferenceErrors": 0,
+      "originalQuartoErrors": 1,
+      "quartoErrorsAfterInteraction": 1
+    }
+  },
+  {
+    "name": "Storage malformed: preferences still usable",
+    "result": {
+      "preferenceErrors": 0,
+      "originalQuartoErrors": 0,
+      "quartoErrorsAfterInteraction": 0
+    }
+  },
+  {
+    "name": "Forced colors retains keyboard focus outline",
+    "result": "passed"
+  },
+  {
+    "name": "Radio selected state and focus in forced colors",
+    "result": "passed"
+  }
+]

@@ -5,9 +5,11 @@ const fs = require('node:fs');
 const path = require('node:path');
 const engine = process.env.HANDOUT_BROWSER || 'edge';
 const investigate = process.env.HANDOUT_INVESTIGATE === '1';
-const reportDir = path.join(__dirname, 'refinements', `${engine}-${investigate ? 'before' : 'after'}`);
+const reportDir = process.env.HANDOUT_REPORT_DIR ? path.resolve(process.env.HANDOUT_REPORT_DIR)
+  : path.join(__dirname, 'refinements', `${engine}-${investigate ? 'before' : 'after'}`);
 fs.mkdirSync(reportDir, { recursive: true });
 const root = path.resolve(__dirname, '..');
+const choose = (page, name, value) => page.locator(`input[type="radio"][name="${name}"][value="${value}"]`).check();
 const key = 'exp-2026-10-26.reading.v1';
 const results = { engine, investigate, scaling: [], loading: [] };
 const server = require('node:http').createServer((req, res) => {
@@ -78,10 +80,11 @@ const size = page => page.evaluate(() => parseFloat(getComputedStyle(document.qu
         await page.goto(url);
         const baseline = await size(page);
         await page.locator('summary').tap();
-        await page.selectOption('#reading-font', 'serif');
-        await page.selectOption('#reading-appearance', 'dark');
-        await page.selectOption('#reading-spacing', 'spacious');
-        await page.selectOption('#reading-width', 'wide');
+        // Tap the label face away from the small native radio itself.
+        for (const [name, value] of Object.entries({ font: 'serif', appearance: 'dark', spacing: 'spacious', width: 'wide' })) {
+          await page.locator(`input[name="${name}"][value="${value}"] + .reading-option-face`).tap();
+          assert.equal(await page.locator(`input[name="${name}"]:checked`).inputValue(), value);
+        }
         for (const percentage of [85, 125, 150]) {
           await page.locator('#reading-size').fill(String(percentage));
           await page.locator('#reading-size').dispatchEvent('change');
@@ -92,10 +95,10 @@ const size = page => page.evaluate(() => parseFloat(getComputedStyle(document.qu
         assert.equal(await page.locator('#reading-preferences').getAttribute('open'), null);
         await page.locator('summary').tap();
         assert.equal(await page.locator('#reading-size').inputValue(), '150');
-        assert.equal(await page.locator('#reading-font').inputValue(), 'serif');
-        assert.equal(await page.locator('#reading-spacing').inputValue(), 'spacious');
-        assert.equal(await page.locator('#reading-width').inputValue(), 'wide');
-        assert.equal(await page.locator('#reading-appearance').inputValue(), 'dark');
+        assert.equal(await page.locator('input[name="font"]:checked').inputValue(), 'serif');
+        assert.equal(await page.locator('input[name="spacing"]:checked').inputValue(), 'spacious');
+        assert.equal(await page.locator('input[name="width"]:checked').inputValue(), 'wide');
+        assert.equal(await page.locator('input[name="appearance"]:checked').inputValue(), 'dark');
         await page.locator('summary').tap();
         assert.equal(await page.locator('#reading-preferences').getAttribute('open'), null);
         await page.screenshot({ path: path.join(reportDir, `mobile-touch-${width}.png`) });

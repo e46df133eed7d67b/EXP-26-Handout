@@ -1,0 +1,39 @@
+- group:
+  - text: "Reading Preferences Font size:"
+  - status: 150%
+  - slider "Font size:": "150"
+  - group "Typeface":
+    - text: Typeface
+    - radio "Sans" [checked]
+    - text: Sans
+    - radio "Serif"
+    - text: Serif
+    - radio "Atkinson"
+    - text: Atkinson
+  - group "Appearance":
+    - text: Appearance
+    - radio "System" [checked]
+    - text: System
+    - radio "Light"
+    - text: Light
+    - radio "Dark"
+    - text: Dark
+  - group "Line spacing":
+    - text: Line spacing
+    - radio "Compact"
+    - text: Compact
+    - radio "Normal" [checked]
+    - text: Normal
+    - radio "Spacious"
+    - text: Spacious
+  - group "Reading width":
+    - text: Reading width
+    - radio "Narrow"
+    - text: Narrow
+    - radio "Standard"
+    - text: Standard
+    - radio "Wide" [checked]
+    - text: Wide
+  - paragraph: Reading width applies on larger screens.
+  - button "Reset to Defaults"
+  - status: Preferences are saved only in this browser.
