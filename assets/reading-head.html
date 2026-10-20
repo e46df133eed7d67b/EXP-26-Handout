@@ -1,1 +1,14 @@
+<!-- Set only appearance before body paint; full controls remain deferred. -->
+<script>
+(() => {
+  let appearance;
+  try {
+    appearance = JSON.parse(localStorage.getItem("exp-2026-10-26.reading.v1"))?.appearance;
+  } catch { /* Use the device preference if saved data cannot be read. */ }
+  const mode = appearance === "light" || appearance === "dark" ? appearance
+    : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  document.documentElement.dataset.bsTheme = mode;
+  document.documentElement.style.colorScheme = mode;
+})();
+</script>
 <script src="assets/reading.js" defer></script>

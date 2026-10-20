@@ -45,7 +45,6 @@
   const controls = Object.fromEntries(Object.keys(defaults).map(name => [name, panel.querySelector(`[name="${name}"]`)]));
   const storageStatus = document.getElementById("reading-storage");
   const fontStatus = document.getElementById("reading-font-status");
-  const baseSize = parseFloat(getComputedStyle(root).fontSize);
   let fontCheck;
 
   function appearance() {
@@ -63,8 +62,8 @@
 
   function apply() {
     if (preferences.size === 100) root.style.removeProperty("font-size");
-    // Percentages retain browser text enlargement; 16px is CSS's initial medium.
-    else root.style.fontSize = `${preferences.size * baseSize / 16}%`;
+    // Scale Quarto's own root size directly, without assuming a browser default.
+    else root.style.fontSize = `calc(var(--bs-root-font-size) * ${preferences.size / 100})`;
     for (const name of ["font", "spacing", "width"]) {
       const attribute = `data-reading-${name}`;
       if (preferences[name] === defaults[name]) root.removeAttribute(attribute);

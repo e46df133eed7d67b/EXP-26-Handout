@@ -41,6 +41,19 @@ ul.task-list li input[type="checkbox"] {
 <script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="index_files/libs/bootstrap/bootstrap-215b371544c282197b31c8aa00ce3677.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<!-- Set only appearance before body paint; full controls remain deferred. -->
+<script>
+(() => {
+  let appearance;
+  try {
+    appearance = JSON.parse(localStorage.getItem("exp-2026-10-26.reading.v1"))?.appearance;
+  } catch { /* Use the device preference if saved data cannot be read. */ }
+  const mode = appearance === "light" || appearance === "dark" ? appearance
+    : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  document.documentElement.dataset.bsTheme = mode;
+  document.documentElement.style.colorScheme = mode;
+})();
+</script>
 <script src="assets/reading.js" defer=""></script>
 
 

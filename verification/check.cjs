@@ -1,8 +1,11 @@
 // Local browser verification. Requires Playwright only for development/testing.
-const { chromium } = require('playwright');
+const { chromium, webkit } = require('playwright');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const engine = process.env.HANDOUT_BROWSER || 'edge';
+const reportDir = process.env.HANDOUT_REPORT_DIR ? path.resolve(process.env.HANDOUT_REPORT_DIR) : __dirname;
+fs.mkdirSync(reportDir, { recursive: true });
 let url = process.env.HANDOUT_URL;
 const key = 'exp-2026-10-26.reading.v1';
 const results = [];
@@ -40,7 +43,8 @@ const content = page => page.evaluate(() => ({
     await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
     url = `http://127.0.0.1:${server.address().port}/`;
   }
-  const browser = await chromium.launch({ channel: 'msedge', headless: true });
+  const browser = await (engine === 'webkit' ? webkit : chromium).launch(engine === 'webkit' ? { headless: true } : { channel: 'msedge', headless: true });
+  record('Browser', { engine, version: browser.version() });
   try {
     const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, colorScheme: 'light' });
     const page = await context.newPage();
@@ -50,7 +54,7 @@ const content = page => page.evaluate(() => ({
     await page.goto(url + 'baseline.html');
     const baseline = await metrics(page);
     const original = await content(page);
-    await page.screenshot({ path: path.join(__dirname, 'baseline-desktop.png') });
+    await page.screenshot({ path: path.join(reportDir, 'baseline-desktop.png') });
     await page.goto(url);
     await page.waitForSelector('#reading-preferences');
     assert.deepEqual(await content(page), original);
@@ -58,11 +62,14 @@ const content = page => page.evaluate(() => ({
     assert.equal(await page.locator('#reading-preferences').getAttribute('open'), null);
     assert.equal(requests.filter(r => /\.ttf/.test(r)).length, 0);
     record('Original text, links, TOC, default typography and width preserved', baseline);
-    await page.screenshot({ path: path.join(__dirname, 'desktop-default.png') });
+    await page.screenshot({ path: path.join(reportDir, 'desktop-default.png') });
 
     await page.locator('#reading-preferences summary').focus();
     await page.keyboard.press('Enter');
     assert.equal(await page.locator('#reading-preferences').getAttribute('open'), '');
+    await page.keyboard.press('Space');
+    assert.equal(await page.locator('#reading-preferences').getAttribute('open'), null);
+    await page.keyboard.press('Enter');
     await page.keyboard.press('Tab');
     assert.equal(await page.evaluate(() => document.activeElement.id), 'reading-size');
     await page.keyboard.press('ArrowRight');
@@ -91,6 +98,13 @@ const content = page => page.evaluate(() => ({
     await page.locator('#reading-reset').click();
     assert.equal(await page.evaluate(k => localStorage.getItem(k), key), null);
     assert.deepEqual(await metrics(page), baseline);
+    for (const [spacing, ratio] of [['compact', 1.35], ['normal', 1.5], ['spacious', 1.8]]) {
+      await page.selectOption('#reading-spacing', spacing);
+      const m = await metrics(page);
+      assert(Math.abs(parseFloat(m.line) / parseFloat(m.size) - ratio) < 0.01);
+    }
+    await page.locator('#reading-reset').click();
+    record('All line-spacing choices');
     await page.emulateMedia({ colorScheme: 'dark' });
     await page.waitForFunction(() => document.documentElement.dataset.bsTheme === 'dark');
     assert.equal(await page.locator('html').getAttribute('data-bs-theme'), 'dark');
@@ -103,7 +117,7 @@ const content = page => page.evaluate(() => ({
     record('Reset, live system appearance, and explicit override');
 
     const layouts = [];
-    for (const width of [320, 390, 768, 820, 1024, 1440]) {
+    for (const width of [320, 375, 390, 768, 820, 1024, 1440]) {
       await page.setViewportSize({ width, height: 1000 });
       for (const size of [85, 100, 150]) {
         const widths = {};
@@ -122,27 +136,29 @@ const content = page => page.evaluate(() => ({
         }
       }
     }
-    record('Responsive matrix (54 combinations)', layouts);
+    record('Responsive matrix (63 combinations)', layouts);
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.screenshot({ path: path.join(__dirname, 'mobile-large-dark.png'), fullPage: true });
+    await page.screenshot({ path: path.join(reportDir, 'mobile-large-dark.png'), fullPage: true });
     await page.locator('summary').click();
-    await page.screenshot({ path: path.join(__dirname, 'mobile-collapsed.png') });
+    await page.screenshot({ path: path.join(reportDir, 'mobile-collapsed.png') });
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.locator('summary').click();
-    await page.screenshot({ path: path.join(__dirname, 'desktop-preferences-dark.png') });
+    await page.screenshot({ path: path.join(reportDir, 'desktop-preferences-dark.png') });
     const aria = await page.locator('#reading-preferences').ariaSnapshot();
-    fs.writeFileSync(path.join(__dirname, 'preferences-accessibility.txt'), aria);
+    fs.writeFileSync(path.join(reportDir, 'preferences-accessibility.txt'), aria);
     record('Accessibility tree', aria);
-    const cdp = await context.newCDPSession(page);
-    const dom = await cdp.send('DOM.getDocument');
-    const summary = await cdp.send('DOM.querySelector', { nodeId: dom.root.nodeId, selector: '#reading-preferences summary' });
-    const ax = await cdp.send('Accessibility.getPartialAXTree', { nodeId: summary.nodeId });
-    record('Native disclosure accessibility', ax.nodes.map(n => ({ role: n.role?.value, name: n.name?.value, ignored: n.ignored, properties: n.properties })));
+    if (engine !== 'webkit') {
+      const cdp = await context.newCDPSession(page);
+      const dom = await cdp.send('DOM.getDocument');
+      const summary = await cdp.send('DOM.querySelector', { nodeId: dom.root.nodeId, selector: '#reading-preferences summary' });
+      const ax = await cdp.send('Accessibility.getPartialAXTree', { nodeId: summary.nodeId });
+      record('Native disclosure accessibility', ax.nodes.map(n => ({ role: n.role?.value, name: n.name?.value, ignored: n.ignored, properties: n.properties })));
+    }
     await page.addScriptTag({ path: path.join(process.env.LOCALAPPDATA, 'Programs/Quarto/share/formats/html/axe/axe.min.js') });
     for (const mode of ['light', 'dark']) {
       await page.selectOption('#reading-appearance', mode);
       const audit = await page.evaluate(() => axe.run('#reading-preferences', { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa'] } }));
-      fs.writeFileSync(path.join(__dirname, `accessibility-${mode}.json`), JSON.stringify(audit, null, 2));
+      fs.writeFileSync(path.join(reportDir, `accessibility-${mode}.json`), JSON.stringify(audit, null, 2));
       assert.deepEqual(audit.violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => n.target) })), []);
       record(`Automated accessibility audit (${mode}, expanded panel)`, { violations: audit.violations.length, passes: audit.passes.length, manualReview: audit.incomplete.length });
     }
@@ -159,7 +175,7 @@ const content = page => page.evaluate(() => ({
     assert.equal(await plain.locator('#reading-preferences').isVisible(), false);
     const plainMetrics = await metrics(plain);
     assert(plainMetrics.scrollWidth <= plainMetrics.viewport);
-    await plain.screenshot({ path: path.join(__dirname, 'mobile-no-javascript.png') });
+    await plain.screenshot({ path: path.join(reportDir, 'mobile-no-javascript.png') });
     record('No JavaScript: full content, TOC and links preserved');
 
     for (const failure of ['denied', 'quota', 'malformed']) {
@@ -193,6 +209,6 @@ const content = page => page.evaluate(() => ({
     await page.keyboard.press('Tab');
     assert.notEqual(await page.locator('#reading-size').evaluate(e => getComputedStyle(e).outlineStyle), 'none');
     record('Forced colors retains keyboard focus outline');
-    fs.writeFileSync(path.join(__dirname, 'browser-results.json'), JSON.stringify(results, null, 2));
+    fs.writeFileSync(path.join(reportDir, 'browser-results.json'), JSON.stringify(results, null, 2));
   } finally { await browser.close(); server.close(); }
 })().catch(e => { console.error(e); process.exitCode = 1; });
