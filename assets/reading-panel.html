@@ -1,0 +1,46 @@
+<!-- Kept outside the handout source; JS places this below Quarto's title. -->
+<details id="reading-preferences" hidden>
+  <summary>Reading Preferences</summary>
+  <div class="reading-controls">
+    <div class="reading-control">
+      <label for="reading-size">Font size: <output id="reading-size-value" for="reading-size">100%</output></label>
+      <input id="reading-size" name="size" type="range" min="85" max="150" step="5" value="100" aria-valuetext="100 percent">
+    </div>
+    <div class="reading-control">
+      <label for="reading-font">Typeface</label>
+      <select id="reading-font" name="font">
+        <option value="sans">Sans-serif (Quarto default)</option>
+        <option value="serif">Serif</option>
+        <option value="atkinson">Atkinson Hyperlegible</option>
+      </select>
+    </div>
+    <div class="reading-control">
+      <label for="reading-appearance">Appearance</label>
+      <select id="reading-appearance" name="appearance">
+        <option value="system">Follow device preference</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </div>
+    <div class="reading-control">
+      <label for="reading-spacing">Line spacing</label>
+      <select id="reading-spacing" name="spacing">
+        <option value="compact">Compact</option>
+        <option value="normal" selected>Normal (Quarto default)</option>
+        <option value="spacious">Spacious</option>
+      </select>
+    </div>
+    <div class="reading-control">
+      <label for="reading-width">Reading width</label>
+      <select id="reading-width" name="width" aria-describedby="reading-width-help">
+        <option value="narrow">Narrow</option>
+        <option value="standard" selected>Standard (Quarto default)</option>
+        <option value="wide">Wide</option>
+      </select>
+    </div>
+  </div>
+  <p id="reading-width-help">Reading width applies on larger screens.</p>
+  <button id="reading-reset" type="button">Reset to Defaults</button>
+  <p id="reading-storage" role="status">Preferences are saved only in this browser.</p>
+  <p id="reading-font-status" role="status"></p>
+</details>

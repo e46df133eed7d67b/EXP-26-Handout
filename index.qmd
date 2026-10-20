@@ -1,0 +1,85 @@
+
+---
+title: "Majors that Explore How the World Works"
+subtitle: "Philosophy and Computer Science + Philosophy"
+author: 
+    name: Andrew Smith
+    email: alsmit10@illinois.edu
+    affiliation: 
+        department: Philosophy
+        name: Department of Philosophy, College of Liberal Arts and Sciences
+        url: https://philosophy.illinois.edu
+date: "2026-10-26"
+date-format: full
+format:
+  html:
+    toc: true
+    css: assets/reading.css
+    include-in-header: assets/reading-head.html
+    include-before-body: assets/reading-panel.html
+---
+
+## Introductory
+
+To understand what philosophy is about, you must do it. So, we will try to incorporate some philosophy into our discussion today.
+
+This page is a kind of digital, customizable handout. It includes links to some of the things I mention, and you can adjust the font, font size, light/dark mode, line spacing, and line width. You can annotate it, perhaps in the way that you can highlight/underline/write in the margins of a paper handout. It will remain accessible after our discussion today because it is uploaded on a Github page, and I do not need to pay for the hosting. This is an experiment: I want to try something new and, moreover, [I don't use PowerPoint anyway](https://youtu.be/abr0UUKP1pU?si=8an2Hl-9CQyocY5u). I hope it is helpful. 
+
+## Question 1. What is the major about?
+
+This is a much more difficult, interesting question than you might realize. In certain disciplines, it is possible to 'step back' or 'step outside' the discipline and take a kind of [Archimedean view](https://www.oxfordreference.com/display/10.1093/oi/authority.20110803095422175) upon it. For instance, you do not have to do chemistry upon chemistry itself -- what would that even mean? -- in order to know what chemistry is. (Though perhaps my STEM colleagues will correct me today.) Philosophy does not work this way. Any attempt to survey the discipline is itself an exercise in philosophy. There is no neutral territory here, and when philosophers _do_ try to find neutral territory on this question, it is boring and unilluminating. (An example: "Philosophy is from the Greek _philosophia_ - _philia_ means 'love,' _sophia_ means 'wisdom,' and hence, 'love of wisdom.'" Yeah, great, fine, sure.) That said, I will offer two characterizations which I am sympathetic to, with the caveat that not everyone in philosophy will agree.
+
+a. [Wilfrid Sellars](https://plato.stanford.edu/entries/sellars/) writes that ["the aim of philosophy, abstractly formulated, is to understand how things in the broadest possible sense of the term hang together in the broadest possible sense of the term."](https://www.ditext.com/sellars/psim.html#:~:text=The%20aim%20of%20philosophy%2C%20abstractly%20formulated%2C%20is%20to%20understand%20how%20things%20in%20the%20broadest%20possible%20sense%20of%20the%20term%20hang%20together%20in%20the%20broadest%20possible%20sense%20of%20the%20term%2E) Philosophy involves the attempt to understand how, indeed, we have _a world_ in the first place. (A world, you might think, is something like the totality of that which hangs together.)
+
+b. [Ludwig Wittgenstein](https://plato.stanford.edu/entries/wittgenstein/) writes in the [_Tractatus Logico-Philosophicus_](https://people.umass.edu/klement/tlp/tlp.html) that ["philosophy is not a body of doctrine but an activity."](https://people.umass.edu/klement/tlp/tlp.html#:~:text=Philosophy%20is%20not%20a%20body%20of%20doctrine%20but%20an%20activity) (Recall what I said above at the outset; I will return to this idea below as well.) Philosophy is not something you learn by going to class and letting the slides wash over you because, in a certain sense, philosophy is not something you learn in the first place. Rather, philosophy is what happens when you try to make sense of what is written on that slide. It is what you -- yes, _you_ -- do when you read 'philosophy is not a body of doctrine but an activity,' then my gloss on it, and then think about whether that gloss on it makes sense. And note that we can shift the italics and say it's not just something _you_ do: it's something you _do_.
+
+## Question 2. Why might a student be interested?
+
+The influential British philosopher [Bernard Williams](https://plato.stanford.edu/entries/williams-bernard/) quips [in an interview](https://manwithoutqualities.com/wp-content/uploads/2015/12/harvardreview_2004_0012_0001_0080_0091pdfnameharvardreview_2004_0012_0001_0080_0091.pdf) that one of his colleagues liked to say that, historically, philosophy tends to be done for two sorts of reasons: curiosity and salvation. In my experience, this is accurate. "Salvation" these days usually does not look like Christian redemption: the salvation that is sought by students usually involves admission to law school, grad school, the workforce, or something like that. Among philosophers, there are people who do it for salvation, and their concern is not about getting a job or something: they instead might think that, through philosophy, you can [leave behind ignorance and come to know things](https://en.wikipedia.org/wiki/Allegory_of_the_cave). There are still people who do philosophy simply because they're curious and it's interesting. Curiosity might be expressed in all sorts of ways: returning to the idea of _exploring the world_, you might want to understand how the [world of first nature](https://plato.stanford.edu/entries/hermeneutics/#HermAnglAmerPhil:~:text=2007%29%2E-,John,place%2E) - think the purely physical world - constitutes _a world_ in the first place, but you might also have this question about the [social world](https://plato.stanford.edu/entries/hermeneutics/#HermAnglAmerPhil:~:text=place%2E-,McDowell,84%29%2E).
+
+## Question 3. What are some courses that introduce the major?
+
+Any of them. Our 100- and 200-level courses typically do not have prerequisites or restrictions; we don't offer a ton at the 300-level but these have no prerequisites anyway; 400-level courses typically have a prerequisite of one philosophy course. (Even so, it is not true that any one 100-level course prepares you just as well as any other for any 400-level course. If you have taken an introductory ethics course, such as [PHIL 105](https://courses.illinois.edu/schedule/2027/spring/PHIL/105), you will not be ready to take a 400-level [metaphysics](https://plato.stanford.edu/entries/metaphysics/) course, such as [PHIL 426](https://courses.illinois.edu/schedule/2027/spring/PHIL/426).) Instructors also have significant academic freedom in designing and delivering their courses. An introductory philosophy course, such as [PHIL 100](https://courses.illinois.edu/schedule/2027/spring/PHIL/100) or [PHIL 101](https://courses.illinois.edu/schedule/2027/spring/PHIL/101), taught by one instructor might not share any readings or assignments in common with the same course, taught by another instructor, and yet both can be recognizable as introductory philosophy courses.
+
+Why "any of them?" My thinking is that philosophy either does not have a foundation or, if it does, it has foundations in the way a _spider web_ does, namely, by having many. And much like a spider web, you cannot isolate a single "strand," as it were, and study it in isolation from the others: if you go for one strand, you get the whole web. (That single strand would constitute an Archimedean point, but I have denied you can find such a point in philosophy.) In turn, there is a sense in which, when you do philosophy, you are _always already behind_: your own thinking needs a set of presuppositions in order to proceed in the first place, but those presuppositions are themselves philosophically contentious. So when students take a philosophy course and they feel like they are behind, I find myself telling them, more and more, that it is in the nature of the activity itself that you are behind. (Though---let's be real---too much Thirsty Thursday doesn't help either.)
+
+## Question 4. What are some career options?
+
+Our students do a lot of reading and writing, and they are well-prepared for [careers](https://philosophy.illinois.edu/academics/undergraduate-studies/careers-philosophy-majors) involving these skills. Our CS+PHIL students, in addition, have a strong background in computer science. See also Question and Answer 6, where I say more.
+
+## Question 5. What are some opportunities for involvement and research?
+
+There are several. Regarding involvement, there are several RSOs associated with our majors in some form or another -- [Philosophy Club](https://www.instagram.com/uiucphilclub/), [AI Alignment](https://aialignmentillinois.org/), the [Techne Undergraduate Philosophy Journal](https://technejournal.web.illinois.edu/), and I am working with some students to reactivate Illinois's chapter of an honor society in philosophy, [Phi Sigma Tau](https://phisigmatau.org/). The department holds several colloquia, featuring visiting speakers, each semester, and these are open to the public and listed on [our Events page](https://calendars.illinois.edu/list/8092). 
+
+Additionally, the Department is home to the [Illinois Forum on Human Flourishing in a Digital Age](https://fhf.philosophy.illinois.edu/). It is interdisciplinary, but with a strong philosophy slant. The Forum hosts [visiting speakers for a lecture series](https://fhf.philosophy.illinois.edu/page-4/fall-2026/), a new short [Lunch Talk series](https://fhf.philosophy.illinois.edu/talks-and-workshops/), and several [reading](https://fhf.philosophy.illinois.edu/rethinking-teaching-and-learning-in-the-age-of-ai/) [groups](https://fhf.philosophy.illinois.edu/readings-groups/). The Forum is also home to the [Illinois Luddite Society](https://fhf.philosophy.illinois.edu/illinois-luddite-society/). Lastly, the Forum is working on establishing and cementing in place some [undergraduate fellowships](https://fhf.philosophy.illinois.edu/undergraduate-fellowship/). 
+
+
+As for research, philosophy typically does not operate on the model of labs. (There are some rare exceptions in areas such as [experimental philosophy](https://plato.stanford.edu/entries/experimental-philosophy/), but to my knowledge, we do not offer any of these exceptions these days, though we do have a faculty member with serious interests in x-phi.) Undergraduate research in philosophy typically involves doing an independent study (PHIL 390) or a thesis (PHIL 492). Well-prepared undergraduate students also occasionally take 500-level graduate seminars.
+
+## Question 6. What are some transferable skills your majors gain, and where do they work after college?
+
+Students cultivate their reading and writing skills, along with their ability to explain, assess, and elaborate upon arguments. They develop their imaginations. Lots of Philosophy students are interested in law school---close to 50\% of the Philosophy majors have the Pre-Law designation, based on a report I ran recently in FA26. Others are interested in graduate school, and others enter the workforce. CS+Philosophy students typically have career interests which are similar to those of other CS and CSX students, and my understanding is that they are able to find the same sorts of work after college. The [Illini Success Survey](https://illinisuccess.illinois.edu/) has some more information. 
+
+In general, I take my title seriously and literally, and I do not pretend to have much to say about career stuff. My background is academic and I have virtually no experience with the non-academic job market -- the only non-academic job I ever really applied to is my current one.  I refer students to LAS Career Services for career questions. They are the experts. I am not.
+
+I know that, at this point, I am supposed to say something like "yes, I know I need to learn," but I think that's false. Leaving aside the fact that there are others both in LAS and campus who will do a better job, I do not want to participate in the project of downplaying academics in favor of extracurriculars and careerist aspirations. This project does exist, whether you like to admit it or not; I think we all participate in it, whether we like it or not. [It has, plausibly, existed for a long time](https://plato.stanford.edu/entries/sophists/), but whatever else an old problem is, it is a problem.
+
+Philosophy is one of the humanities, and the point of the humanities is not to churn out resumes and, incidentally to that end, human beings who have those resumes. Nor---hot take---is the point to turn out _truths_ of the sort you can use to compile a _theory_, which you can then write down in a book; because philosophy is not a body of doctrine but an activity, a thought I have returned to a few times here, and while you can write down a body of doctrine and leave it somewhere for a rainy day, you cannot do so with an activity. 
+
+A university education in philosophy, then, in my view, is about _becoming a certain sort of human being._ It is hard to say what that sort of human being is like: students are all different, and yet the ones who have educated themselves appropriately nevertheless seem to have something in common. I would say they are _thoughtful_. In any event, becoming a certain sort of human being is an activity. Indeed, _being_ a certain sort of human being is an activity.
+
+When we take an appropriately broader view of the point of education, we could perhaps say that students gain not just skills, but certain sorts of [_virtues_](https://plato.stanford.edu/entries/ethics-virtue/#Virt). 
+
+I think it is more helpful to think about the sorts of virtues a human being cultivates in their education. True, as part of that cultivation, they will also cultivate certain sorts of skills, which they can use in different areas of life. But unless they undergo the [severance procedure](https://severance-tv.fandom.com/wiki/Severance_Procedure), they are also going to have to, as it were, _transfer themselves_ between these different areas of life. They should then cultivate not just skills, but virtues, so they live a life they can take seriously.
+
+## Contacts, etc.
+
+Please do feel free to contact me or refer students to me if it would be helpful. It is never a bother.
+
++ Email: <alsmit10@illinois.edu>
++ My Advising Appointment Calendar: <https://go.illinois.edu/PhilAdvisingCalendar>
++ Department Website: <https://philosophy.illinois.edu>
++ Departmental Instagram handle: @illinoisphilosophy
++ Philosophy major requirements: <https://catalog.illinois.edu/undergraduate/las/philosophy-balas/>
++ CS+Philosophy major requirements: <https://catalog.illinois.edu/undergraduate/eng_las/computer-science-philosophy-bslas/>
++ Philosophy minor requirements: <https://catalog.illinois.edu/undergraduate/las/minors/philosophy/>

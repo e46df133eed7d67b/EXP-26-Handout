@@ -1,0 +1,198 @@
+// Local browser verification. Requires Playwright only for development/testing.
+const { chromium } = require('playwright');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+let url = process.env.HANDOUT_URL;
+const key = 'exp-2026-10-26.reading.v1';
+const results = [];
+const record = (name, data = 'passed') => { results.push({ name, result: data }); console.log(name, JSON.stringify(data)); };
+const metrics = page => page.evaluate(() => {
+  const main = document.querySelector('main');
+  const p = main.querySelector('section p');
+  const s = getComputedStyle(p);
+  return { font: s.fontFamily, size: s.fontSize, line: s.lineHeight, color: s.color,
+    background: getComputedStyle(document.body).backgroundColor,
+    width: main.getBoundingClientRect().width,
+    scrollWidth: document.documentElement.scrollWidth, viewport: innerWidth };
+});
+const content = page => page.evaluate(() => ({
+  sections: [...document.querySelectorAll('main > section')].map(s => ({ id: s.id, text: s.textContent })),
+  links: [...document.querySelectorAll('main > section a:not(.anchorjs-link)')].map(a => a.getAttribute('href')),
+  toc: [...document.querySelectorAll('#TOC a')].map(a => a.getAttribute('href'))
+}));
+
+(async () => {
+  // Serve inside the test process so browser and server share the same sandbox.
+  const root = path.resolve(__dirname, '..');
+  const server = require('node:http').createServer((req, res) => {
+    const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+    const file = path.resolve(root, '.' + (pathname === '/' ? '/index.html' : pathname));
+    if (!file.startsWith(root + path.sep)) { res.writeHead(403).end(); return; }
+    fs.readFile(file, (error, data) => {
+      if (error) { res.writeHead(404).end(); return; }
+      const types = { '.html': 'text/html', '.js': 'application/javascript', '.css': 'text/css', '.ttf': 'font/ttf', '.woff2': 'font/woff2' };
+      res.setHeader('Content-Type', types[path.extname(file)] || 'application/octet-stream');
+      res.end(data);
+    });
+  });
+  if (!url) {
+    await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+    url = `http://127.0.0.1:${server.address().port}/`;
+  }
+  const browser = await chromium.launch({ channel: 'msedge', headless: true });
+  try {
+    const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, colorScheme: 'light' });
+    const page = await context.newPage();
+    const errors = [], requests = [];
+    page.on('pageerror', e => errors.push(e.message));
+    page.on('request', r => requests.push(r.url()));
+    await page.goto(url + 'baseline.html');
+    const baseline = await metrics(page);
+    const original = await content(page);
+    await page.screenshot({ path: path.join(__dirname, 'baseline-desktop.png') });
+    await page.goto(url);
+    await page.waitForSelector('#reading-preferences');
+    assert.deepEqual(await content(page), original);
+    assert.deepEqual(await metrics(page), baseline);
+    assert.equal(await page.locator('#reading-preferences').getAttribute('open'), null);
+    assert.equal(requests.filter(r => /\.ttf/.test(r)).length, 0);
+    record('Original text, links, TOC, default typography and width preserved', baseline);
+    await page.screenshot({ path: path.join(__dirname, 'desktop-default.png') });
+
+    await page.locator('#reading-preferences summary').focus();
+    await page.keyboard.press('Enter');
+    assert.equal(await page.locator('#reading-preferences').getAttribute('open'), '');
+    await page.keyboard.press('Tab');
+    assert.equal(await page.evaluate(() => document.activeElement.id), 'reading-size');
+    await page.keyboard.press('ArrowRight');
+    assert.equal(await page.locator('#reading-size').inputValue(), '105');
+    await page.keyboard.press('Tab');
+    assert.equal(await page.evaluate(() => document.activeElement.id), 'reading-font');
+    record('Keyboard expansion, slider, and focus order');
+    await page.selectOption('#reading-font', 'serif');
+    await page.selectOption('#reading-spacing', 'spacious');
+    await page.selectOption('#reading-width', 'narrow');
+    await page.selectOption('#reading-appearance', 'dark');
+    const personalized = await metrics(page);
+    assert(personalized.font.includes('Georgia'));
+    assert(parseFloat(personalized.line) / parseFloat(personalized.size) > 1.79);
+    assert.equal(personalized.background, 'rgb(33, 37, 41)');
+    await page.reload();
+    assert.deepEqual(await metrics(page), personalized);
+    assert.equal(await page.locator('#reading-preferences').getAttribute('open'), null);
+    record('All preferences persist across refresh', personalized);
+    await page.locator('summary').click();
+    await page.selectOption('#reading-font', 'atkinson');
+    await page.evaluate(() => document.fonts.ready);
+    assert(await page.evaluate(() => document.fonts.check('17px "Atkinson Hyperlegible"')));
+    assert(requests.some(r => r.endsWith('AtkinsonHyperlegible-Regular.ttf')));
+    record('Atkinson loads locally only when selected', requests.filter(r => /\.ttf/.test(r)));
+    await page.locator('#reading-reset').click();
+    assert.equal(await page.evaluate(k => localStorage.getItem(k), key), null);
+    assert.deepEqual(await metrics(page), baseline);
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await page.waitForFunction(() => document.documentElement.dataset.bsTheme === 'dark');
+    assert.equal(await page.locator('html').getAttribute('data-bs-theme'), 'dark');
+    await page.selectOption('#reading-appearance', 'light');
+    await page.emulateMedia({ colorScheme: 'light' });
+    await page.emulateMedia({ colorScheme: 'dark' });
+    assert.equal(await page.locator('html').getAttribute('data-bs-theme'), 'light');
+    await page.locator('#reading-reset').click();
+    assert.equal(await page.locator('html').getAttribute('data-bs-theme'), 'dark');
+    record('Reset, live system appearance, and explicit override');
+
+    const layouts = [];
+    for (const width of [320, 390, 768, 820, 1024, 1440]) {
+      await page.setViewportSize({ width, height: 1000 });
+      for (const size of [85, 100, 150]) {
+        const widths = {};
+        await page.locator('#reading-size').fill(String(size));
+        await page.locator('#reading-size').dispatchEvent('change');
+        for (const measure of ['narrow', 'standard', 'wide']) {
+          await page.selectOption('#reading-width', measure);
+          const m = await metrics(page);
+          layouts.push({ width, size, measure, main: m.width, scroll: m.scrollWidth });
+          widths[measure] = m.width;
+          assert(m.scrollWidth <= width + 1, `Overflow: ${JSON.stringify(layouts.at(-1))}`);
+        }
+        if (width >= 768) {
+          assert(widths.narrow < widths.standard, `Narrow must reduce width: ${JSON.stringify(widths)}`);
+          assert(widths.wide >= widths.standard, `Wide must increase available width: ${JSON.stringify(widths)}`);
+        }
+      }
+    }
+    record('Responsive matrix (54 combinations)', layouts);
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.screenshot({ path: path.join(__dirname, 'mobile-large-dark.png'), fullPage: true });
+    await page.locator('summary').click();
+    await page.screenshot({ path: path.join(__dirname, 'mobile-collapsed.png') });
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.locator('summary').click();
+    await page.screenshot({ path: path.join(__dirname, 'desktop-preferences-dark.png') });
+    const aria = await page.locator('#reading-preferences').ariaSnapshot();
+    fs.writeFileSync(path.join(__dirname, 'preferences-accessibility.txt'), aria);
+    record('Accessibility tree', aria);
+    const cdp = await context.newCDPSession(page);
+    const dom = await cdp.send('DOM.getDocument');
+    const summary = await cdp.send('DOM.querySelector', { nodeId: dom.root.nodeId, selector: '#reading-preferences summary' });
+    const ax = await cdp.send('Accessibility.getPartialAXTree', { nodeId: summary.nodeId });
+    record('Native disclosure accessibility', ax.nodes.map(n => ({ role: n.role?.value, name: n.name?.value, ignored: n.ignored, properties: n.properties })));
+    await page.addScriptTag({ path: path.join(process.env.LOCALAPPDATA, 'Programs/Quarto/share/formats/html/axe/axe.min.js') });
+    for (const mode of ['light', 'dark']) {
+      await page.selectOption('#reading-appearance', mode);
+      const audit = await page.evaluate(() => axe.run('#reading-preferences', { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa'] } }));
+      fs.writeFileSync(path.join(__dirname, `accessibility-${mode}.json`), JSON.stringify(audit, null, 2));
+      assert.deepEqual(audit.violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => n.target) })), []);
+      record(`Automated accessibility audit (${mode}, expanded panel)`, { violations: audit.violations.length, passes: audit.passes.length, manualReview: audit.incomplete.length });
+    }
+    assert.deepEqual(await content(page), original);
+    assert.equal(requests.filter(r => !r.startsWith(url)).length, 0);
+    assert.deepEqual(errors, []);
+    record('No external page requests or JavaScript errors');
+
+    // Disabled scripts leave a normal, fully readable Quarto handout.
+    const noJS = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+    const plain = await noJS.newPage();
+    await plain.goto(url);
+    assert.deepEqual(await content(plain), original);
+    assert.equal(await plain.locator('#reading-preferences').isVisible(), false);
+    const plainMetrics = await metrics(plain);
+    assert(plainMetrics.scrollWidth <= plainMetrics.viewport);
+    await plain.screenshot({ path: path.join(__dirname, 'mobile-no-javascript.png') });
+    record('No JavaScript: full content, TOC and links preserved');
+
+    for (const failure of ['denied', 'quota', 'malformed']) {
+      const restricted = await browser.newContext();
+      await restricted.addInitScript(({ failure, key }) => {
+        if (failure === 'denied') Object.defineProperty(window, 'localStorage', { get() { throw Object.assign(new Error('Denied'), { name: 'SecurityError' }); } });
+        if (failure === 'quota') Storage.prototype.setItem = () => { throw Object.assign(new Error('Full'), { name: 'QuotaExceededError' }); };
+        if (failure === 'malformed') localStorage.setItem(key, '{broken');
+      }, { failure, key });
+      const test = await restricted.newPage();
+      const failures = [];
+      test.on('pageerror', e => failures.push(e.stack));
+      await test.goto(url + 'baseline.html');
+      await test.waitForLoadState('networkidle');
+      const inherited = failures.splice(0);
+      await test.goto(url);
+      await test.waitForLoadState('networkidle');
+      await test.locator('summary').click();
+      await test.selectOption('#reading-appearance', 'dark');
+      await test.selectOption('#reading-font', 'serif');
+      assert.equal(await test.locator('html').getAttribute('data-bs-theme'), 'dark');
+      assert((await metrics(test)).font.includes('Georgia'));
+      if (failures.length) assert(inherited.length > 0, 'Errors must also occur in original Quarto page');
+      assert(failures.every(stack => stack.includes('/index_files/libs/quarto-html/') && stack.includes(failure === 'quota' ? 'Full' : 'Denied')), JSON.stringify({ inherited, failures }));
+      if (failure !== 'malformed') assert((await test.locator('#reading-storage').innerText()).includes('unavailable'));
+      await restricted.close();
+      record(`Storage ${failure}: preferences still usable`, { preferenceErrors: 0, originalQuartoErrors: inherited.length, quartoErrorsAfterInteraction: failures.length });
+    }
+    await page.emulateMedia({ forcedColors: 'active' });
+    await page.locator('summary').focus();
+    await page.keyboard.press('Tab');
+    assert.notEqual(await page.locator('#reading-size').evaluate(e => getComputedStyle(e).outlineStyle), 'none');
+    record('Forced colors retains keyboard focus outline');
+    fs.writeFileSync(path.join(__dirname, 'browser-results.json'), JSON.stringify(results, null, 2));
+  } finally { await browser.close(); server.close(); }
+})().catch(e => { console.error(e); process.exitCode = 1; });

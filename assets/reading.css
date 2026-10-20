@@ -1,0 +1,98 @@
+/* No changes to Quarto's default font, spacing, or width until selected. */
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("fonts/AtkinsonHyperlegible-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("fonts/AtkinsonHyperlegible-Italic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("fonts/AtkinsonHyperlegible-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("fonts/AtkinsonHyperlegible-BoldItalic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+}
+
+html[data-reading-font="serif"] body {
+  --bs-body-font-family: Georgia, "Times New Roman", serif;
+}
+html[data-reading-font="atkinson"] body {
+  --bs-body-font-family: "Atkinson Hyperlegible", var(--bs-font-sans-serif);
+}
+html[data-reading-spacing="compact"] body { --bs-body-line-height: 1.35; }
+html[data-reading-spacing="spacious"] body { --bs-body-line-height: 1.8; }
+
+/* Bootstrap supplies the dark palette. These Quarto TOC colors are static. */
+html[data-bs-theme="dark"] #TOC a.active,
+html[data-bs-theme="dark"] #TOC a:hover {
+  color: var(--bs-link-color) !important;
+  border-left-color: var(--bs-link-color);
+}
+html[data-bs-theme="dark"] h2 {
+  border-bottom-color: var(--bs-border-color);
+}
+
+/* Retain Quarto's grid and TOC; change only the requested reading measure. */
+@media (min-width: 768px) {
+  html[data-reading-width="narrow"] #quarto-document-content {
+    width: 100%;
+    max-width: 80%;
+    justify-self: center;
+  }
+  html[data-reading-width="wide"] #quarto-document-content {
+    grid-column: page-start / body-content-end;
+  }
+}
+
+/* Long URLs must reflow, including at large text sizes on phones. */
+#quarto-document-content { min-width: 0; overflow-wrap: anywhere; }
+
+#reading-preferences {
+  margin-block: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+#reading-preferences summary {
+  cursor: pointer;
+  width: fit-content;
+  padding-block: 0.4rem;
+  color: var(--bs-body-color);
+}
+.reading-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 0.75rem 1rem;
+  margin-block: 0.75rem;
+}
+.reading-control { min-width: 0; }
+.reading-control label { display: block; margin-bottom: 0.25rem; }
+.reading-control select, .reading-control input { width: 100%; min-width: 0; }
+#reading-preferences select, #reading-preferences button {
+  font: inherit;
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.2rem;
+  padding: 0.35rem 0.5rem;
+  min-height: 2.5rem;
+}
+#reading-preferences input { min-height: 2.5rem; accent-color: var(--bs-link-color); }
+#reading-preferences :focus-visible { outline: 2px solid var(--bs-link-color); outline-offset: 3px; }
+#reading-preferences p { margin-block: 0.5rem; }
+#reading-font-status:empty { display: none; }
+@media print { #reading-preferences { display: none; } }

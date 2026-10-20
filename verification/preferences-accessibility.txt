@@ -1,0 +1,27 @@
+- group:
+  - text: "Reading Preferences Font size:"
+  - status: 150%
+  - slider "Font size:": "150"
+  - text: Typeface
+  - combobox "Typeface":
+    - option "Sans-serif (Quarto default)" [selected]
+    - option "Serif"
+    - option "Atkinson Hyperlegible"
+  - text: Appearance
+  - combobox "Appearance":
+    - option "Follow device preference" [selected]
+    - option "Light"
+    - option "Dark"
+  - text: Line spacing
+  - combobox "Line spacing":
+    - option "Compact"
+    - option "Normal (Quarto default)" [selected]
+    - option "Spacious"
+  - text: Reading width
+  - combobox "Reading width":
+    - option "Narrow"
+    - option "Standard (Quarto default)"
+    - option "Wide" [selected]
+  - paragraph: Reading width applies on larger screens.
+  - button "Reset to Defaults"
+  - status: Preferences are saved only in this browser.
