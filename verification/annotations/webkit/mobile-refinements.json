@@ -1,0 +1,351 @@
+[
+  {
+    "name": "Long paragraph baseline",
+    "detail": {
+      "before": {
+        "y": 1139,
+        "passageTop": -0.140625,
+        "focus": "BODY",
+        "panelOpen": false
+      },
+      "geometry": {
+        "top": 784,
+        "bottom": 836,
+        "viewport": 844,
+        "position": "fixed"
+      },
+      "afterHighlight": {
+        "y": 1139,
+        "passageTop": -0.140625,
+        "focus": "P",
+        "panelOpen": false
+      },
+      "beforeNote": {
+        "y": 1139,
+        "passageTop": -0.140625,
+        "focus": "P",
+        "panelOpen": false
+      },
+      "opened": {
+        "y": 1139,
+        "passageTop": -0.140625,
+        "focus": "annotation-comment",
+        "panelOpen": false
+      },
+      "afterNote": {
+        "y": 1139,
+        "passageTop": -0.140625,
+        "focus": "P",
+        "panelOpen": false
+      }
+    }
+  },
+  {
+    "name": "Body annotation with My Annotations already open preserves layout",
+    "detail": {
+      "before": {
+        "y": 1090,
+        "passageTop": 593.21875,
+        "focus": "annotation-summary",
+        "panelOpen": true
+      },
+      "after": {
+        "y": 1090,
+        "passageTop": 593.21875,
+        "focus": "P",
+        "panelOpen": true
+      }
+    }
+  },
+  {
+    "name": "Mobile 320px / 100%",
+    "detail": {
+      "paragraphHeight": 841.5,
+      "row": {
+        "boxes": [
+          {
+            "top": 781.4375,
+            "bottom": 843.484375,
+            "left": 38.25,
+            "right": 99.125,
+            "width": 60.875,
+            "height": 62.046875
+          },
+          {
+            "top": 781.4375,
+            "bottom": 843.484375,
+            "left": 103.375,
+            "right": 164.25,
+            "width": 60.875,
+            "height": 62.046875
+          },
+          {
+            "top": 781.4375,
+            "bottom": 843.484375,
+            "left": 168.5,
+            "right": 229.375,
+            "width": 60.875,
+            "height": 62.046875
+          },
+          {
+            "top": 781.4375,
+            "bottom": 843.484375,
+            "left": 233.625,
+            "right": 294.5,
+            "width": 60.875,
+            "height": 62.046875
+          }
+        ],
+        "overflow": false,
+        "clipped": false
+      }
+    }
+  },
+  {
+    "name": "Mobile 320px / 150%",
+    "detail": {
+      "paragraphHeight": 2065.5,
+      "row": {
+        "boxes": [
+          {
+            "top": 540.28125,
+            "bottom": 640.96875,
+            "left": 57.375,
+            "right": 108.6875,
+            "width": 51.3125,
+            "height": 100.6875
+          },
+          {
+            "top": 540.28125,
+            "bottom": 640.96875,
+            "left": 115.0625,
+            "right": 166.375,
+            "width": 51.3125,
+            "height": 100.6875
+          },
+          {
+            "top": 540.28125,
+            "bottom": 640.96875,
+            "left": 172.75,
+            "right": 224.0625,
+            "width": 51.3125,
+            "height": 100.6875
+          },
+          {
+            "top": 540.28125,
+            "bottom": 640.96875,
+            "left": 230.4375,
+            "right": 281.75,
+            "width": 51.3125,
+            "height": 100.6875
+          }
+        ],
+        "overflow": false,
+        "clipped": false
+      }
+    }
+  },
+  {
+    "name": "Mobile 375px / 100%",
+    "detail": {
+      "paragraphHeight": 663,
+      "row": {
+        "boxes": [
+          {
+            "top": 781.8125,
+            "bottom": 843.859375,
+            "left": 38.25,
+            "right": 112.875,
+            "width": 74.625,
+            "height": 62.046875
+          },
+          {
+            "top": 781.8125,
+            "bottom": 843.859375,
+            "left": 117.125,
+            "right": 191.75,
+            "width": 74.625,
+            "height": 62.046875
+          },
+          {
+            "top": 781.8125,
+            "bottom": 843.859375,
+            "left": 196,
+            "right": 270.625,
+            "width": 74.625,
+            "height": 62.046875
+          },
+          {
+            "top": 781.8125,
+            "bottom": 843.859375,
+            "left": 274.875,
+            "right": 349.5,
+            "width": 74.625,
+            "height": 62.046875
+          }
+        ],
+        "overflow": false,
+        "clipped": false
+      }
+    }
+  },
+  {
+    "name": "Mobile 375px / 150%",
+    "detail": {
+      "paragraphHeight": 1759.5,
+      "row": {
+        "boxes": [
+          {
+            "top": 522.21875,
+            "bottom": 622.90625,
+            "left": 57.375,
+            "right": 122.4375,
+            "width": 65.0625,
+            "height": 100.6875
+          },
+          {
+            "top": 522.21875,
+            "bottom": 622.90625,
+            "left": 128.8125,
+            "right": 193.875,
+            "width": 65.0625,
+            "height": 100.6875
+          },
+          {
+            "top": 522.21875,
+            "bottom": 622.90625,
+            "left": 200.25,
+            "right": 265.3125,
+            "width": 65.0625,
+            "height": 100.6875
+          },
+          {
+            "top": 522.21875,
+            "bottom": 622.90625,
+            "left": 271.6875,
+            "right": 336.75,
+            "width": 65.0625,
+            "height": 100.6875
+          }
+        ],
+        "overflow": false,
+        "clipped": false
+      }
+    }
+  },
+  {
+    "name": "Mobile 390px / 100%",
+    "detail": {
+      "paragraphHeight": 637.5,
+      "row": {
+        "boxes": [
+          {
+            "top": 781.21875,
+            "bottom": 843.265625,
+            "left": 38.25,
+            "right": 116.625,
+            "width": 78.375,
+            "height": 62.046875
+          },
+          {
+            "top": 781.21875,
+            "bottom": 843.265625,
+            "left": 120.875,
+            "right": 199.25,
+            "width": 78.375,
+            "height": 62.046875
+          },
+          {
+            "top": 781.21875,
+            "bottom": 843.265625,
+            "left": 203.5,
+            "right": 281.875,
+            "width": 78.375,
+            "height": 62.046875
+          },
+          {
+            "top": 781.21875,
+            "bottom": 843.265625,
+            "left": 286.125,
+            "right": 364.5,
+            "width": 78.375,
+            "height": 62.046875
+          }
+        ],
+        "overflow": false,
+        "clipped": false
+      }
+    }
+  },
+  {
+    "name": "Mobile 390px / 150%",
+    "detail": {
+      "paragraphHeight": 1606.5,
+      "row": {
+        "boxes": [
+          {
+            "top": 487.9375,
+            "bottom": 588.625,
+            "left": 57.375,
+            "right": 126.1875,
+            "width": 68.8125,
+            "height": 100.6875
+          },
+          {
+            "top": 487.9375,
+            "bottom": 588.625,
+            "left": 132.5625,
+            "right": 201.375,
+            "width": 68.8125,
+            "height": 100.6875
+          },
+          {
+            "top": 487.9375,
+            "bottom": 588.625,
+            "left": 207.75,
+            "right": 276.5625,
+            "width": 68.8125,
+            "height": 100.6875
+          },
+          {
+            "top": 487.9375,
+            "bottom": 588.625,
+            "left": 282.9375,
+            "right": 351.75,
+            "width": 68.8125,
+            "height": 100.6875
+          }
+        ],
+        "overflow": false,
+        "clipped": false
+      }
+    }
+  },
+  {
+    "name": "Synthetic keyboard visualViewport geometry and Escape restoration",
+    "detail": {
+      "x": 8,
+      "y": 38,
+      "width": 374,
+      "height": 314
+    }
+  },
+  {
+    "name": "Desktop contextual coordinates, keyboard focus, note save",
+    "detail": {
+      "placement": "right",
+      "bar": {
+        "top": 8,
+        "bottom": 152,
+        "left": 588,
+        "right": 640
+      },
+      "selection": {
+        "top": 1.546875,
+        "bottom": 23.546875,
+        "left": 256,
+        "right": 572
+      }
+    }
+  }
+]

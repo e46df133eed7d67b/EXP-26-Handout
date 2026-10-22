@@ -1,0 +1,131 @@
+[
+  {
+    "name": "Browser",
+    "detail": "153.0"
+  },
+  {
+    "name": "Native mouse-drag selection exposes contextual actions; ordinary clicks do not",
+    "detail": "passed"
+  },
+  {
+    "name": "Independent highlights, note creation/edit/deletion, reuse existing highlight, and safe comment rendering",
+    "detail": "passed"
+  },
+  {
+    "name": "Several same-paragraph marks, inline/link ranges, cross-paragraph selection, reload, and passage navigation",
+    "detail": "passed"
+  },
+  {
+    "name": "All five reading preferences preserve the saved passages",
+    "detail": "passed"
+  },
+  {
+    "name": "Marks survive viewport changes and Edge native page-scale emulation",
+    "detail": "passed"
+  },
+  {
+    "name": "Keyboard action shortcut, preserved range, dialog focus and return",
+    "detail": "passed"
+  },
+  {
+    "name": "Repeated exact text uses source offsets; ambiguous changed-source matches stay unanchored",
+    "detail": {
+      "second": true,
+      "ambiguous": true
+    }
+  },
+  {
+    "name": "Highlighted body/link text contrast (light)",
+    "detail": {
+      "background": "rgb(255, 236, 173)",
+      "link": "rgb(10, 88, 202)",
+      "text": "rgb(33, 37, 41)",
+      "bodyRatio": 13.114992057340567,
+      "linkRatio": 5.4737978171804285
+    }
+  },
+  {
+    "name": "Highlighted body/link text contrast (dark)",
+    "detail": {
+      "background": "rgb(64, 53, 22)",
+      "link": "rgb(139, 185, 254)",
+      "text": "rgb(222, 226, 230)",
+      "bodyRatio": 9.27471197030588,
+      "linkRatio": 6.020463852928326
+    }
+  },
+  {
+    "name": "Unanchored records retained; expanded annotation list accessibility audit",
+    "detail": {
+      "violations": 0
+    }
+  },
+  {
+    "name": "A hyperlink inside a marked range keeps normal navigation (destination stubbed)",
+    "detail": "passed"
+  },
+  {
+    "name": "Native dialog accessibility audit and Escape close",
+    "detail": {
+      "violations": 0
+    }
+  },
+  {
+    "name": "Confirmed annotation deletion",
+    "detail": "passed"
+  },
+  {
+    "name": "Forced-colors/reduced-motion emulation and keyboard focus",
+    "detail": "passed"
+  },
+  {
+    "name": "Storage denied",
+    "detail": "passed"
+  },
+  {
+    "name": "Storage quota",
+    "detail": "passed"
+  },
+  {
+    "name": "Storage corrupt",
+    "detail": "passed"
+  },
+  {
+    "name": "Storage invalid-record",
+    "detail": "passed"
+  },
+  {
+    "name": "Storage unsupported-version",
+    "detail": "passed"
+  },
+  {
+    "name": "Without JavaScript the original handout is readable",
+    "detail": "passed"
+  },
+  {
+    "name": "Concurrent-tab changes are not overwritten",
+    "detail": "passed"
+  },
+  {
+    "name": "Missing CSS Highlight API: records/list still work with a visible compatibility message",
+    "detail": "passed"
+  },
+  {
+    "name": "Touch-emulated 320px: inline actions, note, enlarged reflow and scrolling",
+    "detail": "passed"
+  },
+  {
+    "name": "Touch-emulated 375px: inline actions, note, enlarged reflow and scrolling",
+    "detail": "passed"
+  },
+  {
+    "name": "Touch-emulated 390px: inline actions, note, enlarged reflow and scrolling",
+    "detail": "passed"
+  },
+  {
+    "name": "No external requests or runtime exceptions",
+    "detail": {
+      "resizeObserverDiagnostics": 0
+    }
+  }
+]

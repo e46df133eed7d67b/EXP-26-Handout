@@ -49,7 +49,7 @@ const size = page => page.evaluate(() => parseFloat(getComputedStyle(document.qu
         });
         assert.equal(medium, browserDefault, 'Browser default must actually change');
         await page.goto(url);
-        await page.locator('summary').click();
+        await page.locator('#reading-preferences > summary').click();
         for (const percentage of [100, 85, 125, 150, 100]) {
           await page.locator('#reading-size').fill(String(percentage));
           await page.locator('#reading-size').dispatchEvent('change');
@@ -79,7 +79,7 @@ const size = page => page.evaluate(() => parseFloat(getComputedStyle(document.qu
         const page = await context.newPage();
         await page.goto(url);
         const baseline = await size(page);
-        await page.locator('summary').tap();
+        await page.locator('#reading-preferences > summary').tap();
         // Tap the label face away from the small native radio itself.
         for (const [name, value] of Object.entries({ font: 'serif', appearance: 'dark', spacing: 'spacious', width: 'wide' })) {
           await page.locator(`input[name="${name}"][value="${value}"] + .reading-option-face`).tap();
@@ -93,13 +93,13 @@ const size = page => page.evaluate(() => parseFloat(getComputedStyle(document.qu
         }
         await page.reload();
         assert.equal(await page.locator('#reading-preferences').getAttribute('open'), null);
-        await page.locator('summary').tap();
+        await page.locator('#reading-preferences > summary').tap();
         assert.equal(await page.locator('#reading-size').inputValue(), '150');
         assert.equal(await page.locator('input[name="font"]:checked').inputValue(), 'serif');
         assert.equal(await page.locator('input[name="spacing"]:checked').inputValue(), 'spacious');
         assert.equal(await page.locator('input[name="width"]:checked').inputValue(), 'wide');
         assert.equal(await page.locator('input[name="appearance"]:checked').inputValue(), 'dark');
-        await page.locator('summary').tap();
+        await page.locator('#reading-preferences > summary').tap();
         assert.equal(await page.locator('#reading-preferences').getAttribute('open'), null);
         await page.screenshot({ path: path.join(reportDir, `mobile-touch-${width}.png`) });
         results.mobileTouch.push({ width, baseline, percentages: [85, 125, 150], overflow: false, reload: 'passed', disclosureTap: 'passed' });

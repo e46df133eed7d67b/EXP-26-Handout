@@ -55,9 +55,11 @@ ul.task-list li input[type="checkbox"] {
 })();
 </script>
 <script src="assets/reading.js" defer=""></script>
+<script src="assets/annotations.js" type="module"></script>
 
 
 <link rel="stylesheet" href="assets/reading.css">
+<link rel="stylesheet" href="assets/annotations.css">
 </head>
 
 <body class="quarto-light">
@@ -68,7 +70,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introductory" id="toc-introductory" class="nav-link active" data-scroll-target="#introductory">Introductory</a></li>
+  <li><a href="#introductory" id="toc-introductory" class="nav-link active" data-scroll-target="#introductory">Introductory</a>
+  <ul class="collapse">
+  <li><a href="#this-page-what-it-is-and-its-point" id="toc-this-page-what-it-is-and-its-point" class="nav-link" data-scroll-target="#this-page-what-it-is-and-its-point">This page: what it is and its point</a></li>
+  </ul></li>
   <li><a href="#question-1.-what-is-the-major-about" id="toc-question-1.-what-is-the-major-about" class="nav-link" data-scroll-target="#question-1.-what-is-the-major-about">Question 1. What is the major about?</a></li>
   <li><a href="#question-2.-why-might-a-student-be-interested" id="toc-question-2.-why-might-a-student-be-interested" class="nav-link" data-scroll-target="#question-2.-why-might-a-student-be-interested">Question 2. Why might a student be interested?</a></li>
   <li><a href="#question-3.-what-are-some-courses-that-introduce-the-major" id="toc-question-3.-what-are-some-courses-that-introduce-the-major" class="nav-link" data-scroll-target="#question-3.-what-are-some-courses-that-introduce-the-major">Question 3. What are some courses that introduce the major?</a></li>
@@ -166,6 +171,47 @@ ul.task-list li input[type="checkbox"] {
   <p id="reading-storage" role="status">Preferences are saved only in this browser.</p>
   <p id="reading-font-status" role="status"></p>
 </details>
+<div id="annotation-ui" data-annotation-ui="" hidden="">
+  <details id="my-annotations">
+    <summary id="annotation-summary">My Annotations (0)</summary>
+    <p>Select handout text, then choose Highlight or Add Note. Compact actions
+      appear beside the selection when space permits, with a small bottom fallback. Keyboard users can press
+      <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd> after selecting text to focus the actions.</p>
+    <p>Every annotation has a tinted background and may have an attached note.
+      Activate a highlight or use this list to read or edit its note.</p>
+    <p>Annotations stay in this browser and website address. They do not sync
+      between devices, and clearing browser storage can erase them.</p>
+    <p id="annotation-support"></p>
+    <p id="annotation-empty">No passage annotations yet.</p>
+    <ol id="annotation-list"></ol>
+  </details>
+  <p id="annotation-storage-warning"></p>
+  <p id="annotation-status" class="annotation-live" role="status" aria-live="polite"></p>
+  <div id="annotation-actions" data-annotation-ui="" role="group" aria-label="Selected passage actions" aria-describedby="annotation-action-quote" aria-keyshortcuts="Alt+Shift+A" hidden="">
+    <p id="annotation-action-quote" class="annotation-live"></p>
+    <div class="annotation-buttons">
+      <button type="button" data-action="highlight" aria-label="Highlight" title="Highlight"><svg viewbox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 4 11 11-5 5L4 9zM4 9l-2 5 5-2M2 21h14"></path></svg></button>
+      <button type="button" data-action="note" aria-label="Add Note" title="Add Note"><svg viewbox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h16v12h-9l-5 4v-4H4zM8 8h8M8 12h5"></path></svg></button>
+      <button type="button" data-action="dismiss" aria-label="Dismiss" title="Dismiss"><svg viewbox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M6 18 18 6"></path></svg></button>
+    </div>
+    <p id="annotation-action-status" role="status"></p>
+  </div>
+  <dialog id="annotation-editor" data-annotation-ui="" aria-labelledby="annotation-editor-title" aria-describedby="annotation-editor-quote">
+    <form id="annotation-form">
+      <h2 id="annotation-editor-title" class="anchored">Passage annotation</h2>
+      <blockquote id="annotation-editor-quote" class="blockquote"></blockquote>
+      <label for="annotation-comment">Passage note</label>
+      <textarea id="annotation-comment" rows="4" maxlength="8000" aria-describedby="annotation-editor-help" autofocus=""></textarea>
+      <p id="annotation-editor-help">Notes are optional. Saving keeps the highlight; Cancel leaves it unchanged. Deleting a note keeps its highlight.</p>
+      <p id="annotation-editor-status" role="status"></p>
+      <div class="annotation-buttons">
+        <button type="submit">Save Note</button>
+        <button type="button" id="annotation-cancel">Cancel</button>
+        <button type="button" id="annotation-delete-note" hidden="">Delete Note</button>
+      </div>
+    </form>
+  </dialog>
+</div>
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -176,7 +222,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-title-meta-author">
   <div class="quarto-title-meta-heading">Author</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
+  <div class="quarto-title-meta-heading">Unit</div>
   
     <div class="quarto-title-meta-contents">
     <p class="author">Andrew Smith <a href="mailto:alsmit10@illinois.edu" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
@@ -194,7 +240,7 @@ ul.task-list li input[type="checkbox"] {
 
       
     <div>
-    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-heading">Date</div>
     <div class="quarto-title-meta-contents">
       <p class="date">Monday, October 26, 2026</p>
     </div>
@@ -211,14 +257,17 @@ ul.task-list li input[type="checkbox"] {
 <section id="introductory" class="level2">
 <h2 class="anchored" data-anchor-id="introductory">Introductory</h2>
 <p>To understand what philosophy is about, you must do it. So, we will try to incorporate some philosophy into our discussion today.</p>
+<section id="this-page-what-it-is-and-its-point" class="level3">
+<h3 class="anchored" data-anchor-id="this-page-what-it-is-and-its-point">This page: what it is and its point</h3>
 <p>This page is a kind of digital, customizable handout. It includes links to some of the things I mention, and you can adjust the font, font size, light/dark mode, line spacing, and line width. You can annotate it, perhaps in the way that you can highlight/underline/write in the margins of a paper handout. It will remain accessible after our discussion today because it is uploaded on a Github page, and I do not need to pay for the hosting. This is an experiment: I want to try something new and, moreover, <a href="https://youtu.be/abr0UUKP1pU?si=8an2Hl-9CQyocY5u">I don’t use PowerPoint anyway</a>. I hope it is helpful.</p>
+</section>
 </section>
 <section id="question-1.-what-is-the-major-about" class="level2">
 <h2 class="anchored" data-anchor-id="question-1.-what-is-the-major-about">Question 1. What is the major about?</h2>
 <p>This is a much more difficult, interesting question than you might realize. In certain disciplines, it is possible to ‘step back’ or ‘step outside’ the discipline and take a kind of <a href="https://www.oxfordreference.com/display/10.1093/oi/authority.20110803095422175">Archimedean view</a> upon it. For instance, you do not have to do chemistry upon chemistry itself – what would that even mean? – in order to know what chemistry is. (Though perhaps my STEM colleagues will correct me today.) Philosophy does not work this way. Any attempt to survey the discipline is itself an exercise in philosophy. There is no neutral territory here, and when philosophers <em>do</em> try to find neutral territory on this question, it is boring and unilluminating. (An example: “Philosophy is from the Greek <em>philosophia</em> - <em>philia</em> means ‘love,’ <em>sophia</em> means ‘wisdom,’ and hence, ‘love of wisdom.’” Yeah, great, fine, sure.) That said, I will offer two characterizations which I am sympathetic to, with the caveat that not everyone in philosophy will agree.</p>
 <ol type="a">
 <li><p><a href="https://plato.stanford.edu/entries/sellars/">Wilfrid Sellars</a> writes that <a href="https://www.ditext.com/sellars/psim.html#:~:text=The%20aim%20of%20philosophy%2C%20abstractly%20formulated%2C%20is%20to%20understand%20how%20things%20in%20the%20broadest%20possible%20sense%20of%20the%20term%20hang%20together%20in%20the%20broadest%20possible%20sense%20of%20the%20term%2E">“the aim of philosophy, abstractly formulated, is to understand how things in the broadest possible sense of the term hang together in the broadest possible sense of the term.”</a> Philosophy involves the attempt to understand how, indeed, we have <em>a world</em> in the first place. (A world, you might think, is something like the totality of that which hangs together.)</p></li>
-<li><p><a href="https://plato.stanford.edu/entries/wittgenstein/">Ludwig Wittgenstein</a> writes in the <a href="https://people.umass.edu/klement/tlp/tlp.html"><em>Tractatus Logico-Philosophicus</em></a> that <a href="https://people.umass.edu/klement/tlp/tlp.html#:~:text=Philosophy%20is%20not%20a%20body%20of%20doctrine%20but%20an%20activity">“philosophy is not a body of doctrine but an activity.”</a> (Recall what I said above at the outset; I will return to this idea below as well.) Philosophy is not something you learn by going to class and letting the slides wash over you because, in a certain sense, philosophy is not something you learn in the first place. Rather, philosophy is what happens when you try to make sense of what is written on that slide. It is what you – yes, <em>you</em> – do when you read ‘philosophy is not a body of doctrine but an activity,’ then my gloss on it, and then think about whether that gloss on it makes sense. And note that we can shift the italics and say it’s not just something <em>you</em> do: it’s something you <em>do</em>.</p></li>
+<li><p><a href="https://plato.stanford.edu/entries/wittgenstein/">Ludwig Wittgenstein</a> writes in the <a href="https://people.umass.edu/klement/tlp/tlp.html"><em>Tractatus Logico-Philosophicus</em></a> that <a href="https://people.umass.edu/klement/tlp/tlp.html#:~:text=Philosophy%20is%20not%20a%20body%20of%20doctrine%20but%20an%20activity">“philosophy is not a body of doctrine but an activity.”</a> (Recall what I said above at the outset; I will return to this idea below as well.) Philosophy is not something you learn by going to class and letting the slides wash over you because, in a certain sense, philosophy is not something you learn in the first place. Rather, philosophy is what happens when you try to make sense of what is written on that slide. It is what you – yes, <em>you</em> – do when you read ‘philosophy is not a body of doctrine but an activity,’ then my gloss on it, and then think about whether that gloss on it makes sense. And note that we can shift the italics and say it’s not just something <em>you</em> do: it’s also something you <em>do</em>.</p></li>
 </ol>
 </section>
 <section id="question-2.-why-might-a-student-be-interested" class="level2">
@@ -228,7 +277,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="question-3.-what-are-some-courses-that-introduce-the-major" class="level2">
 <h2 class="anchored" data-anchor-id="question-3.-what-are-some-courses-that-introduce-the-major">Question 3. What are some courses that introduce the major?</h2>
 <p>Any of them. Our 100- and 200-level courses typically do not have prerequisites or restrictions; we don’t offer a ton at the 300-level but these have no prerequisites anyway; 400-level courses typically have a prerequisite of one philosophy course. (Even so, it is not true that any one 100-level course prepares you just as well as any other for any 400-level course. If you have taken an introductory ethics course, such as <a href="https://courses.illinois.edu/schedule/2027/spring/PHIL/105">PHIL 105</a>, you will not be ready to take a 400-level <a href="https://plato.stanford.edu/entries/metaphysics/">metaphysics</a> course, such as <a href="https://courses.illinois.edu/schedule/2027/spring/PHIL/426">PHIL 426</a>.) Instructors also have significant academic freedom in designing and delivering their courses. An introductory philosophy course, such as <a href="https://courses.illinois.edu/schedule/2027/spring/PHIL/100">PHIL 100</a> or <a href="https://courses.illinois.edu/schedule/2027/spring/PHIL/101">PHIL 101</a>, taught by one instructor might not share any readings or assignments in common with the same course, taught by another instructor, and yet both can be recognizable as introductory philosophy courses.</p>
-<p>Why “any of them?” My thinking is that philosophy either does not have a foundation or, if it does, it has foundations in the way a <em>spider web</em> does, namely, by having many. And much like a spider web, you cannot isolate a single “strand,” as it were, and study it in isolation from the others: if you go for one strand, you get the whole web. (That single strand would constitute an Archimedean point, but I have denied you can find such a point in philosophy.) In turn, there is a sense in which, when you do philosophy, you are <em>always already behind</em>: your own thinking needs a set of presuppositions in order to proceed in the first place, but those presuppositions are themselves philosophically contentious. So when students take a philosophy course and they feel like they are behind, I find myself telling them, more and more, that it is in the nature of the activity itself that you are behind. (Though—let’s be real—too much Thirsty Thursday doesn’t help either.)</p>
+<p>Why “any of them?” My thinking is that philosophy either does not have a foundation or, if it does, it has foundations in the way a <em>spider web</em> does, namely, by having many. And much like a spider web, you cannot isolate a single “strand,” as it were, and study it in isolation from the others: if you go for one strand, you get the whole web. (Why not? That single strand would constitute an Archimedean point, but I have denied you can find such a point in philosophy.) In turn, there is a sense in which, when you do philosophy, you are <em>always already behind</em>: your own thinking needs a set of presuppositions in order to proceed in the first place, but those presuppositions are themselves philosophically contentious. So when students take a philosophy course and they feel like they are behind, I find myself telling them, more and more, that it is in the nature of the activity itself that you are behind. (Though—let’s be real—too much Thirsty Thursday doesn’t help either.)</p>
 </section>
 <section id="question-4.-what-are-some-career-options" class="level2">
 <h2 class="anchored" data-anchor-id="question-4.-what-are-some-career-options">Question 4. What are some career options?</h2>

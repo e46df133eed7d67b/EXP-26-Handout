@@ -1,0 +1,27 @@
+Browser "155.0.4283.62"
+Native mouse-drag selection exposes contextual actions; ordinary clicks do not "passed"
+Independent highlights, note creation/edit/deletion, reuse existing highlight, and safe comment rendering "passed"
+Several same-paragraph marks, inline/link ranges, cross-paragraph selection, reload, and passage navigation "passed"
+All five reading preferences preserve the saved passages "passed"
+Marks survive viewport changes and Edge native page-scale emulation "passed"
+Keyboard action shortcut, preserved range, dialog focus and return "passed"
+Repeated exact text uses source offsets; ambiguous changed-source matches stay unanchored {"second":true,"ambiguous":true}
+Highlighted body/link text contrast (light) {"background":"rgb(255, 236, 173)","link":"rgb(10, 88, 202)","text":"rgb(33, 37, 41)","bodyRatio":13.114992057340567,"linkRatio":5.4737978171804285}
+Highlighted body/link text contrast (dark) {"background":"rgb(64, 53, 22)","link":"rgb(139, 185, 254)","text":"rgb(222, 226, 230)","bodyRatio":9.27471197030588,"linkRatio":6.020463852928326}
+Unanchored records retained; expanded annotation list accessibility audit {"violations":0}
+A hyperlink inside a marked range keeps normal navigation (destination stubbed) "passed"
+Native dialog accessibility audit and Escape close {"violations":0}
+Confirmed annotation deletion "passed"
+Forced-colors/reduced-motion emulation and keyboard focus "passed"
+Storage denied "passed"
+Storage quota "passed"
+Storage corrupt "passed"
+Storage invalid-record "passed"
+Storage unsupported-version "passed"
+Without JavaScript the original handout is readable "passed"
+Concurrent-tab changes are not overwritten "passed"
+Missing CSS Highlight API: records/list still work with a visible compatibility message "passed"
+Touch-emulated 320px: inline actions, note, enlarged reflow and scrolling "passed"
+Touch-emulated 375px: inline actions, note, enlarged reflow and scrolling "passed"
+Touch-emulated 390px: inline actions, note, enlarged reflow and scrolling "passed"
+No external requests or runtime exceptions {"resizeObserverDiagnostics":0}

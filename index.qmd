@@ -11,17 +11,29 @@ author:
         url: https://philosophy.illinois.edu
 date: "2026-10-26"
 date-format: full
+published-title: "Date"
+description:
+affiliation-title: "Unit"
+
 format:
   html:
     toc: true
-    css: assets/reading.css
-    include-in-header: assets/reading-head.html
-    include-before-body: assets/reading-panel.html
+    css:
+      - assets/reading.css
+      - assets/annotations.css
+    include-in-header:
+      - assets/reading-head.html
+      - assets/annotations-head.html
+    include-before-body:
+      - assets/reading-panel.html
+      - assets/annotations-panel.html
 ---
 
 ## Introductory
 
 To understand what philosophy is about, you must do it. So, we will try to incorporate some philosophy into our discussion today.
+
+### This page: what it is and its point
 
 This page is a kind of digital, customizable handout. It includes links to some of the things I mention, and you can adjust the font, font size, light/dark mode, line spacing, and line width. You can annotate it, perhaps in the way that you can highlight/underline/write in the margins of a paper handout. It will remain accessible after our discussion today because it is uploaded on a Github page, and I do not need to pay for the hosting. This is an experiment: I want to try something new and, moreover, [I don't use PowerPoint anyway](https://youtu.be/abr0UUKP1pU?si=8an2Hl-9CQyocY5u). I hope it is helpful. 
 
@@ -31,7 +43,7 @@ This is a much more difficult, interesting question than you might realize. In c
 
 a. [Wilfrid Sellars](https://plato.stanford.edu/entries/sellars/) writes that ["the aim of philosophy, abstractly formulated, is to understand how things in the broadest possible sense of the term hang together in the broadest possible sense of the term."](https://www.ditext.com/sellars/psim.html#:~:text=The%20aim%20of%20philosophy%2C%20abstractly%20formulated%2C%20is%20to%20understand%20how%20things%20in%20the%20broadest%20possible%20sense%20of%20the%20term%20hang%20together%20in%20the%20broadest%20possible%20sense%20of%20the%20term%2E) Philosophy involves the attempt to understand how, indeed, we have _a world_ in the first place. (A world, you might think, is something like the totality of that which hangs together.)
 
-b. [Ludwig Wittgenstein](https://plato.stanford.edu/entries/wittgenstein/) writes in the [_Tractatus Logico-Philosophicus_](https://people.umass.edu/klement/tlp/tlp.html) that ["philosophy is not a body of doctrine but an activity."](https://people.umass.edu/klement/tlp/tlp.html#:~:text=Philosophy%20is%20not%20a%20body%20of%20doctrine%20but%20an%20activity) (Recall what I said above at the outset; I will return to this idea below as well.) Philosophy is not something you learn by going to class and letting the slides wash over you because, in a certain sense, philosophy is not something you learn in the first place. Rather, philosophy is what happens when you try to make sense of what is written on that slide. It is what you -- yes, _you_ -- do when you read 'philosophy is not a body of doctrine but an activity,' then my gloss on it, and then think about whether that gloss on it makes sense. And note that we can shift the italics and say it's not just something _you_ do: it's something you _do_.
+b. [Ludwig Wittgenstein](https://plato.stanford.edu/entries/wittgenstein/) writes in the [_Tractatus Logico-Philosophicus_](https://people.umass.edu/klement/tlp/tlp.html) that ["philosophy is not a body of doctrine but an activity."](https://people.umass.edu/klement/tlp/tlp.html#:~:text=Philosophy%20is%20not%20a%20body%20of%20doctrine%20but%20an%20activity) (Recall what I said above at the outset; I will return to this idea below as well.) Philosophy is not something you learn by going to class and letting the slides wash over you because, in a certain sense, philosophy is not something you learn in the first place. Rather, philosophy is what happens when you try to make sense of what is written on that slide. It is what you -- yes, _you_ -- do when you read 'philosophy is not a body of doctrine but an activity,' then my gloss on it, and then think about whether that gloss on it makes sense. And note that we can shift the italics and say it's not just something _you_ do: it's also something you _do_.
 
 ## Question 2. Why might a student be interested?
 
@@ -41,7 +53,7 @@ The influential British philosopher [Bernard Williams](https://plato.stanford.ed
 
 Any of them. Our 100- and 200-level courses typically do not have prerequisites or restrictions; we don't offer a ton at the 300-level but these have no prerequisites anyway; 400-level courses typically have a prerequisite of one philosophy course. (Even so, it is not true that any one 100-level course prepares you just as well as any other for any 400-level course. If you have taken an introductory ethics course, such as [PHIL 105](https://courses.illinois.edu/schedule/2027/spring/PHIL/105), you will not be ready to take a 400-level [metaphysics](https://plato.stanford.edu/entries/metaphysics/) course, such as [PHIL 426](https://courses.illinois.edu/schedule/2027/spring/PHIL/426).) Instructors also have significant academic freedom in designing and delivering their courses. An introductory philosophy course, such as [PHIL 100](https://courses.illinois.edu/schedule/2027/spring/PHIL/100) or [PHIL 101](https://courses.illinois.edu/schedule/2027/spring/PHIL/101), taught by one instructor might not share any readings or assignments in common with the same course, taught by another instructor, and yet both can be recognizable as introductory philosophy courses.
 
-Why "any of them?" My thinking is that philosophy either does not have a foundation or, if it does, it has foundations in the way a _spider web_ does, namely, by having many. And much like a spider web, you cannot isolate a single "strand," as it were, and study it in isolation from the others: if you go for one strand, you get the whole web. (That single strand would constitute an Archimedean point, but I have denied you can find such a point in philosophy.) In turn, there is a sense in which, when you do philosophy, you are _always already behind_: your own thinking needs a set of presuppositions in order to proceed in the first place, but those presuppositions are themselves philosophically contentious. So when students take a philosophy course and they feel like they are behind, I find myself telling them, more and more, that it is in the nature of the activity itself that you are behind. (Though---let's be real---too much Thirsty Thursday doesn't help either.)
+Why "any of them?" My thinking is that philosophy either does not have a foundation or, if it does, it has foundations in the way a _spider web_ does, namely, by having many. And much like a spider web, you cannot isolate a single "strand," as it were, and study it in isolation from the others: if you go for one strand, you get the whole web. (Why not? That single strand would constitute an Archimedean point, but I have denied you can find such a point in philosophy.) In turn, there is a sense in which, when you do philosophy, you are _always already behind_: your own thinking needs a set of presuppositions in order to proceed in the first place, but those presuppositions are themselves philosophically contentious. So when students take a philosophy course and they feel like they are behind, I find myself telling them, more and more, that it is in the nature of the activity itself that you are behind. (Though---let's be real---too much Thirsty Thursday doesn't help either.)
 
 ## Question 4. What are some career options?
 

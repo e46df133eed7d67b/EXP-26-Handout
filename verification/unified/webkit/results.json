@@ -1,0 +1,480 @@
+[
+  {
+    "name": "Browser",
+    "detail": "26.5"
+  },
+  {
+    "name": "Highlight-first creation, preview/cancel, optional empty note, reuse, comment removal and protected highlight deletion",
+    "detail": "passed"
+  },
+  {
+    "name": "Legacy note-only records: no write on load, same schema/IDs/anchors/metadata, comment preserved, safe explicit persistence and unanchored retention",
+    "detail": "passed"
+  },
+  {
+    "name": "Ended selection hides the toolbar; action/editor focus retains captured ranges",
+    "detail": "passed"
+  },
+  {
+    "name": "200 saved highlights: cached anchors on selection/editor, no index/anchor/Range measurements during ordinary scroll",
+    "detail": {
+      "before": {
+        "builds": 1,
+        "resolves": 200,
+        "rects": 0
+      },
+      "selected": {
+        "builds": 1,
+        "resolves": 201,
+        "rects": 1
+      },
+      "editor": {
+        "builds": 1,
+        "resolves": 204,
+        "rects": 1
+      },
+      "beforeScroll": {
+        "builds": 1,
+        "resolves": 205,
+        "rects": 2
+      },
+      "afterScroll": {
+        "builds": 1,
+        "resolves": 205,
+        "rects": 2
+      },
+      "assistedSelectionAndEditorMs": 1887
+    }
+  },
+  {
+    "name": "Asset sizes and unchanged source/reading/anchoring hashes",
+    "detail": {
+      "assets/reading-head.html": {
+        "before": 614,
+        "after": 614,
+        "delta": 0
+      },
+      "assets/reading-panel.html": {
+        "before": 6145,
+        "after": 6145,
+        "delta": 0
+      },
+      "index.qmd": {
+        "before": 14958,
+        "after": 14958,
+        "delta": 0
+      },
+      "assets/annotations-panel.html": {
+        "before": 2446,
+        "after": 2992,
+        "delta": 546
+      },
+      "assets/reading.css": {
+        "before": 5285,
+        "after": 5285,
+        "delta": 0
+      },
+      "assets/annotations.js": {
+        "before": 25713,
+        "after": 28650,
+        "delta": 2937
+      },
+      "assets/reading.js": {
+        "before": 5568,
+        "after": 5568,
+        "delta": 0
+      },
+      "assets/annotation-anchors.js": {
+        "before": 5347,
+        "after": 5347,
+        "delta": 0
+      },
+      "assets/annotations.css": {
+        "before": 6658,
+        "after": 6581,
+        "delta": -77
+      }
+    }
+  },
+  {
+    "name": "Annotation asset requests remain local",
+    "detail": [
+      "/assets/annotations.js",
+      "/assets/annotations.css",
+      "/assets/annotation-anchors.js"
+    ]
+  },
+  {
+    "name": "Placement 320px right",
+    "detail": {
+      "placement": "right",
+      "box": {
+        "x": 73.5,
+        "y": 372.703125,
+        "width": 52,
+        "height": 144
+      },
+      "targets": [
+        {
+          "name": "Highlight",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Add Note",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Dismiss",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    }
+  },
+  {
+    "name": "Placement 320px left",
+    "detail": {
+      "placement": "left",
+      "box": {
+        "x": 174.5,
+        "y": 372.703125,
+        "width": 52,
+        "height": 144
+      },
+      "targets": [
+        {
+          "name": "Highlight",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Add Note",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Dismiss",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    }
+  },
+  {
+    "name": "Placement 320px bottom",
+    "detail": {
+      "placement": "bottom",
+      "box": {
+        "x": 88,
+        "y": 784,
+        "width": 144,
+        "height": 52
+      },
+      "targets": [
+        {
+          "name": "Highlight",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Add Note",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Dismiss",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    }
+  },
+  {
+    "name": "Screen edges and ordinary touch-scroll dismissal 320px",
+    "detail": "passed"
+  },
+  {
+    "name": "Enlarged dark icon toolbar audit; forced colors/reduced motion and keyboard focus",
+    "detail": {
+      "violations": 0
+    }
+  },
+  {
+    "name": "Placement 375px right",
+    "detail": {
+      "placement": "right",
+      "box": {
+        "x": 73.5,
+        "y": 373.203125,
+        "width": 52,
+        "height": 144
+      },
+      "targets": [
+        {
+          "name": "Highlight",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Add Note",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Dismiss",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    }
+  },
+  {
+    "name": "Placement 375px left",
+    "detail": {
+      "placement": "left",
+      "box": {
+        "x": 221.5,
+        "y": 373.203125,
+        "width": 52,
+        "height": 144
+      },
+      "targets": [
+        {
+          "name": "Highlight",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Add Note",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Dismiss",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    }
+  },
+  {
+    "name": "Placement 375px bottom",
+    "detail": {
+      "placement": "bottom",
+      "box": {
+        "x": 115.5,
+        "y": 784,
+        "width": 144,
+        "height": 52
+      },
+      "targets": [
+        {
+          "name": "Highlight",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Add Note",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Dismiss",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    }
+  },
+  {
+    "name": "Screen edges and ordinary touch-scroll dismissal 375px",
+    "detail": "passed"
+  },
+  {
+    "name": "Placement 390px right",
+    "detail": {
+      "placement": "right",
+      "box": {
+        "x": 73.5,
+        "y": 384.640625,
+        "width": 52,
+        "height": 144
+      },
+      "targets": [
+        {
+          "name": "Highlight",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Add Note",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Dismiss",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    }
+  },
+  {
+    "name": "Placement 390px left",
+    "detail": {
+      "placement": "left",
+      "box": {
+        "x": 257.5,
+        "y": 384.640625,
+        "width": 52,
+        "height": 144
+      },
+      "targets": [
+        {
+          "name": "Highlight",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Add Note",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Dismiss",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    }
+  },
+  {
+    "name": "Placement 390px bottom",
+    "detail": {
+      "placement": "bottom",
+      "box": {
+        "x": 128.5,
+        "y": 784,
+        "width": 144,
+        "height": 52
+      },
+      "targets": [
+        {
+          "name": "Highlight",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Add Note",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Dismiss",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    }
+  },
+  {
+    "name": "Screen edges and ordinary touch-scroll dismissal 390px",
+    "detail": "passed"
+  },
+  {
+    "name": "Placement 1440px right",
+    "detail": {
+      "placement": "right",
+      "box": {
+        "x": 296,
+        "y": 397.390625,
+        "width": 52,
+        "height": 144
+      },
+      "targets": [
+        {
+          "name": "Highlight",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Add Note",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Dismiss",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    }
+  },
+  {
+    "name": "Placement 1440px left",
+    "detail": {
+      "placement": "right",
+      "box": {
+        "x": 1036.65625,
+        "y": 397.390625,
+        "width": 52,
+        "height": 144
+      },
+      "targets": [
+        {
+          "name": "Highlight",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Add Note",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Dismiss",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    }
+  },
+  {
+    "name": "Placement 1440px bottom",
+    "detail": {
+      "placement": "right",
+      "box": {
+        "x": 1036.65625,
+        "y": 397.390625,
+        "width": 52,
+        "height": 144
+      },
+      "targets": [
+        {
+          "name": "Highlight",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Add Note",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Dismiss",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    }
+  },
+  {
+    "name": "Runtime checks",
+    "detail": {
+      "unexpectedErrors": 0,
+      "resizeObserverDiagnostics": 3
+    }
+  }
+]

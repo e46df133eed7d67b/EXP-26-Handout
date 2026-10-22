@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Long paragraph baseline",
+    "detail": {
+      "before": {
+        "y": 1139,
+        "focus": "BODY",
+        "panelOpen": false
+      },
+      "geometry": {
+        "top": 577.9375,
+        "bottom": 692.109375,
+        "viewport": 844,
+        "position": "static"
+      },
+      "afterHighlight": {
+        "y": 1177,
+        "focus": "BUTTON",
+        "panelOpen": false
+      },
+      "beforeNote": {
+        "y": 1177,
+        "focus": "BODY",
+        "panelOpen": false
+      },
+      "opened": {
+        "y": 1177,
+        "focus": "annotation-comment",
+        "panelOpen": false
+      },
+      "afterNote": {
+        "y": 33,
+        "focus": "annotation-summary",
+        "panelOpen": true
+      }
+    }
+  }
+]
