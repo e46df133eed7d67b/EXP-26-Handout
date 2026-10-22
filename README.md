@@ -1,6 +1,10 @@
 # EXP-26-Handout
 Handout for 10-26-26 EXP talk
 
+[Publication and update workflow for the unlinked Talks section](PUBLISHING.md).
+The canonical handout is prepared for `/talks/exp-26/handout/`; publication and
+activation of the isolated `docs/` old-URL redirect await approval.
+
 Current local work: **Phase 2A passage highlights and notes**, not deployed.
 [Usage, anchoring model, data recovery, and test results](PHASE2A-ANNOTATIONS.md).
 
