@@ -14,7 +14,6 @@ date-format: full
 published-title: "Date"
 description:
 affiliation-title: "Unit"
-
 format:
   html:
     toc: true
